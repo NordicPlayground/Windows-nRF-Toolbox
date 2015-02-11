@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="nRFToolbox.DeviceFirmwareUpdate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:uc="using:nRFToolbox"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="MainPageLayout">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/image/background_1152x1920_no_text.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
+            <!--<TextBlock x:Name="Title"  HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" Text="DFU"/>-->
+
+        </StackPanel>
+        <StackPanel Margin="10,100">
+            <ScrollViewer ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility ="Visible">
+
+
+                <Grid x:Name="PageContent"  HorizontalAlignment="Center"  ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility ="Visible" VerticalAlignment="Center" Grid.Row="1" Height="500" Width="300">
+            <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="HeartRateMonitorDashBoard" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="HeartRateMonitorInfoPanel" Grid.Row="0">
+                    <TextBlock x:Name="DeviceName" HorizontalAlignment="Left"  Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" Foreground="Black" VerticalAlignment="Top"/>
+                </Grid>
+
+                </Grid>
+                <StackPanel x:Name="HeartRateMonitorTitle" Grid.Column="0" Margin="-157,10,157,-10">
+                    <TextBlock FontFamily="Segoe WP" Text="Device Firmware Update" FontSize="36" Foreground="Black" Margin ="0,500,-350,0" Height="50" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                        <TextBlock.RenderTransform>
+                            <RotateTransform Angle="-90" />
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                </StackPanel>-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="DeviceName" Grid.Row="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" Foreground="Black" VerticalAlignment="Top"/>
+            <!--<TextBlock x:Name="DeviceNsame" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlssssssssssssock" Foreground="Black" VerticalAlignment="Top"/>-->
+        </Grid>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>

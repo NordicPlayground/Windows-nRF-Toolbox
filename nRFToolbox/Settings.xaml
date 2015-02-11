@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="nRFToolbox.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <!--DataContext="{Binding SettingPageViewModelDictionary, RelativeSource={RelativeSource Self}}"-->
+
+    <Grid>
+        <Pivot Title="SETTINGS" x:Name="SettingPivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+            <!--Pivot item one-->
+            <PivotItem
+                x:Name="ProximitySettingPage"
+                Margin="19,14.5,0,0"
+                Loaded="ProximityPage_Loaded"
+                Header="Proximity"
+                DataContext="{Binding ProximitySetting}"
+                CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "200"/>
+                        <RowDefinition Height = "auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource AboutTextStyle}" Text="{Binding Information}"/>
+                        </StackPanel>
+                    </Grid>
+                    <Canvas Grid.Row="1" >
+                        <ToggleSwitch x:Name="AlertOnDeviceToggle" Header="Alert" Toggled="AlertOnDevice_Toggled" Width="350" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="2" Height="60"/>
+                        <TextBlock x:Name="Test" Style="{StaticResource AboutTextStyle}" Text="{Binding AlertToggleText}" Canvas.Left="2" Canvas.Top="68"/>
+                    </Canvas>
+                    <!--Double line list with text wrapping-->
+                </Grid>
+            </PivotItem>
+
+            <PivotItem
+                x:Name="HeartRateMonitorSettingPage"
+                Margin="19,14.5,0,0"
+                Loaded="HeartRateMonitorSettingPage_Loaded"
+                Header="HRM"
+                DataContext="{Binding HeartRateMonitorSetting}"
+                CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "160"/>
+                        <RowDefinition Height = "auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource AboutTextStyle}" Text="{Binding Information}"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--Double line list with text wrapping-->
+                </Grid>
+            </PivotItem>
+
+            <!--Pivot item two-->
+            <PivotItem
+                x:Name="AboutPage"
+                Margin="19,14.5,0,0"
+                Header="About"
+                Loaded="AboutPage_Loaded"
+                DataContext="{Binding AboutPage}">
+                <!--Double line list no text wrapping-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "175"/>
+                        <RowDefinition Height = "65"/>
+                        <RowDefinition Height = "105"/>
+                        <RowDefinition Height = "105"/>
+                        <RowDefinition Height = "*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Information" Style="{StaticResource AboutHeaderTextStyle}" />
+                        <TextBlock x:Name="Information" Style="{StaticResource AboutTextStyle}" Text="{Binding Information}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Version" Style="{StaticResource AboutHeaderTextStyle}" />
+                        <TextBlock x:Name="Version" Style="{StaticResource AboutTextStyle}" Text="{Binding Version}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock Text="Additional" Style="{StaticResource AboutHeaderTextStyle}" />
+                        <TextBlock x:Name="Additional" Style="{StaticResource AboutTextStyle}" Text="{Binding Additional}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="3">
+                        <TextBlock Text="Nordic Semiconductor ASA" Style="{StaticResource AboutHeaderTextStyle}" />
+                        <TextBlock x:Name="NordicSemiconductor" Style="{StaticResource AboutTextStyle}" Text="{Binding NordicSemiconductor}" />
+                    </StackPanel>
+                    <Button Grid.Row="4" Content="Contact us" Click="WriteEmail_Clicked"/>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

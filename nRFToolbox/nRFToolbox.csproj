@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{13959F75-9E33-4A41-9027-A688BD449172}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>nRFToolbox</RootNamespace>
+    <AssemblyName>nRFToolbox</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Page Include="DeviceFirmwareUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeartRateMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProximityMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToolboxMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DeviceSelectionItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\AppBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DeviceSelectionFlyoutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ErrorMessageFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExtentedSplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolboxHeaderLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HeartRateLineChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolboxProfilesGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\DeviceInformation.cs" />
+    <Compile Include="Controls\ExtentedSplashScreen.xaml.cs">
+      <DependentUpon>ExtentedSplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\HeartRatioLineChart.cs" />
+    <Compile Include="DeviceFirmwareUpdate.xaml.cs">
+      <DependentUpon>DeviceFirmwareUpdate.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Gatt\GATTServiceManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HeartRateMonitor.xaml.cs">
+      <DependentUpon>HeartRateMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProximityMonitor.xaml.cs">
+      <DependentUpon>ProximityMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolboxMainPage.xaml.cs">
+      <DependentUpon>ToolboxMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeviceSelectionItems.xaml.cs">
+      <DependentUpon>DeviceSelectionItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AppBarControl.xaml.cs">
+      <DependentUpon>AppBarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeviceSelectionFlyoutControl.xaml.cs">
+      <DependentUpon>DeviceSelectionFlyoutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ErrorMessageFlyout.xaml.cs">
+      <DependentUpon>ErrorMessageFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolboxHeaderLayout.xaml.cs">
+      <DependentUpon>ToolboxHeaderLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HeartRateLineChart.xaml.cs">
+      <DependentUpon>HeartRateLineChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolboxProfilesGridView.xaml.cs">
+      <DependentUpon>ToolboxProfilesGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DeviceFirmwareUpdateViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\DeviceSelectionViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\HeartRateMonitorViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProfileViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProximityViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\SettingPageViewModel.cs" />
+    <Compile Include="ViewModels\ToolboxMainPageViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\image\background.jpg" />
+    <Content Include="Assets\image\background_1152x1920_no_text.png" />
+    <Content Include="Assets\image\background_landscape.jpg" />
+    <Content Include="Assets\image\Battery%402x.png" />
+    <Content Include="Assets\image\Battery.png" />
+    <Content Include="Assets\image\ic_bpm_feature.png" />
+    <Content Include="Assets\image\ic_csc_feature.png" />
+    <Content Include="Assets\image\ic_dfu_feature.png" />
+    <Content Include="Assets\image\ic_glucose_feature.png" />
+    <Content Include="Assets\image\ic_hrs_feature.png" />
+    <Content Include="Assets\image\ic_hts_feature.png" />
+    <Content Include="Assets\image\ic_proximity_feature.png" />
+    <Content Include="Assets\image\ic_rsc_feature.png" />
+    <Content Include="Assets\image\Logo.scale-240.png" />
+    <Content Include="Assets\image\nordic_n_logo.png" />
+    <Content Include="Assets\image\Proximity_Lock_w360x340.png" />
+    <Content Include="Assets\image\Proximity_Unlock_w360x340.png" />
+    <Content Include="Assets\image\SmallLogo.scale-100.png" />
+    <Content Include="Assets\image\SmallLogo.scale-140.png" />
+    <Content Include="Assets\image\SmallLogo.scale-240.png" />
+    <Content Include="Assets\image\SplashScreen.scale-100.png" />
+    <Content Include="Assets\image\SplashScreen.scale-140.png" />
+    <Content Include="Assets\image\SplashScreen.scale-240.png" />
+    <Content Include="Assets\image\SplashScreen100.png" />
+    <Content Include="Assets\image\SplashScreen140.png" />
+    <Content Include="Assets\image\StoreLogo.scale-100.png" />
+    <Content Include="Assets\image\StoreLogo.scale-140.png" />
+    <Content Include="Assets\image\StoreLogo.scale-240.png" />
+    <Content Include="Assets\image\Toolbox_360x360_WP.scale-100.png" />
+    <Content Include="Assets\image\Toolbox_360x360_WP.scale-140.png" />
+    <Content Include="Assets\image\Toolbox_360x360_WP.scale-240.png" />
+    <Content Include="Assets\image\Toolbox_71x71_WP.scale-100.png" />
+    <Content Include="Assets\image\Toolbox_71x71_WP.scale-140.png" />
+    <Content Include="Assets\image\Toolbox_71x71_WP.scale-240.png" />
+    <Content Include="Assets\image\Toolbox_Square_106x106_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_120x120_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_150x150_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_170x170_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_210x210_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_360x360_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_44x44_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_50x50_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_62x62_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_70x70_WP.png" />
+    <Content Include="Assets\image\Toolbox_Square_99x99_WP.png" />
+    <Content Include="Assets\image\Toolbox_Wide_310x150_WP.png" />
+    <Content Include="Assets\image\Toolbox_Wide_434x210_WP.png" />
+    <Content Include="Assets\image\Toolbox_Wide_744x360_WP.png" />
+    <Content Include="Assets\image\WideLogo.scale-100.png" />
+    <Content Include="Assets\image\WideLogo.scale-140.png" />
+    <Content Include="Assets\image\WideLogo.scale-240.png" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="StoreManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\WindowsApp\nrf-toolbox\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\WindowsApp\nrf-toolbox\packages\Unity.3.5.1405-prerelease\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>..\packages\WinRTXamlToolkit.WindowsPhone.1.7.4.0\lib\wpa\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit.Controls.DataVisualization">
+      <HintPath>..\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.7.4.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\dat\blinky_s110.bin" />
+    <Content Include="Assets\dat\blinky_s110.dat" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nRFToolbox.Background\nRFToolbox.Background.csproj">
+      <Project>{43d5dfe6-1de0-47ca-b4f8-b0bbf4466854}</Project>
+      <Name>nRFToolbox.Background</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nRFToolbox.GattService\nRFToolbox.Service.csproj">
+      <Project>{c8fc86f2-1b46-457e-98c6-44b458e62cff}</Project>
+      <Name>nRFToolbox.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\nRFToolbox.Shared\nRFToolbox.Shared.projitems" Label="Shared" />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

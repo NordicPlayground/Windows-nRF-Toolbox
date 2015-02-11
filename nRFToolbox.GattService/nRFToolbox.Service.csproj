@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C8FC86F2-1B46-457E-98C6-44B458E62CFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>nRFToolbox.GattService</RootNamespace>
+    <AssemblyName>nRFToolbox.GattService</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\nRFToolbox.Common\nRFToolbox.Common.csproj">
+      <Project>{0bc27846-a2b8-4a0e-acff-599d388be13b}</Project>
+      <Name>nRFToolbox.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GattService\AlertLevelCharacteristics.cs" />
+    <Compile Include="GattService\AlertLevelEnum.cs" />
+    <Compile Include="GattService\BatteryLevelCharacteristics.cs" />
+    <Compile Include="GattService\BatteryService.cs" />
+    <Compile Include="GattService\BodySensorLocationCharacteristics.cs" />
+    <Compile Include="GattService\DeviceFirmwareUpdateControlPointCharacteristics.cs" />
+    <Compile Include="GattService\DeviceFirmwareUpdatePacketCharacteristics.cs" />
+    <Compile Include="GattService\DeviceFirmwareUpdateService.cs" />
+    <Compile Include="GattService\DeviceFirmwareUpdateVersion.cs" />
+    <Compile Include="GattServiceHelper.cs" />
+    <Compile Include="GattService\FirmwareTypeEnum.cs" />
+    <Compile Include="GattService\HeartRateControlPointCharacteristics.cs" />
+    <Compile Include="GattService\HeartRateMeasurementCharacteristic.cs" />
+    <Compile Include="GattService\HeartRateService.cs" />
+    <Compile Include="GattService\IGattService.cs" />
+    <Compile Include="GattService\ImmediateAlertService.cs" />
+    <Compile Include="GattService\LinkLossService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolboxIdentification.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

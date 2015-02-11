@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="nRFToolbox.HeartRateMonitor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uc="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+
+    </Page.Resources>
+    <Grid x:Name="MainPageLayout">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/image/background.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="stackPanel" Grid.Row="0">
+            <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
+        </StackPanel>
+        <Grid x:Name="PageContent" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="HeartRateMonitorInfoPanel" Grid.Row="0" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition MinHeight="100"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<TextBlock x:Name="TimeStamp" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" Margin="0,0,138.744,456"/>-->
+                <Canvas Grid.Row="0" Grid.Column="0" Width="50" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25"  Source="Assets/image/Battery@2x.png"  />
+                    <TextBlock x:Name="BatteryLevel" Foreground="Beige" Text="{Binding BatteryLevel}" Canvas.Left="9" Canvas.Top="4" FontSize="16"/>
+                </Canvas>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="DeviceName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelTextStyle}"/>
+                <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom">
+                    <TextBlock  x:Name="BodySensorLocation" Text="{Binding BodySensorLocation}" HorizontalAlignment="Left" TextWrapping="Wrap" Style="{StaticResource InfoPanelTextStyle}" />
+                    <TextBlock  x:Name="LabelBodySensorLocation" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="detected position" Style="{StaticResource InfoPanelLabelTextStyle}"  />
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <TextBlock x:Name="BeatPerMinute" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="{Binding BeatPerMinute}" VerticalAlignment="Bottom" Style="{StaticResource InfoPanelTextStyle}"  />
+                    <TextBlock x:Name="LabelBeatPerMinute" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Text="bpm" Style="{StaticResource InfoPanelLabelTextStyle}"  />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <uc:HeartRateLineChart x:Name="HeartRateLineChartControl" VerticalAlignment="Top"/>
+                <!--<uc:ChartControl x:Name="outputDataChart" HorizontalAlignment="Stretch"  Visibility="Visible" SizeChanged="outputDataChart_SizeChanged"/>-->
+            </Grid>
+        </Grid>
+        <!--<Canvas x:Name="SplashScreen" VerticalAlignment="Top" Height="762" Grid.RowSpan="3" Background="#FF009CDE" Opacity="1" Visibility="Visible">
+            <ProgressRing Foreground="White" Background="Transparent" IsActive="True" Margin="170,250,0,0" />
+        </Canvas>-->
+    </Grid>
+</Page>

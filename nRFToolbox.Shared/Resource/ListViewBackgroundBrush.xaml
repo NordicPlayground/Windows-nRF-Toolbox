@@ -1,0 +1,19 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nRFToolbox.Common">
+
+        <ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary x:Key="Default">
+                <!-- ... -->
+                <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="#00abdc"></SolidColorBrush>
+                <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="#ffffff"></SolidColorBrush>
+                <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="#de00abdc"></SolidColorBrush>
+                <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="#ab00abdc"></SolidColorBrush>
+                <!-- ... -->
+            </ResourceDictionary>
+
+            <!-- ... -->
+        </ResourceDictionary.ThemeDictionaries>
+        <!-- ... -->
+</ResourceDictionary>

@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="nRFToolbox.AppBarControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uc="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="DeviceSelectionItemTemplate">
+            <uc:DeviceSelectionItems/>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Page.BottomAppBar>
+        <CommandBar Background="{StaticResource AppBarBackgroundThemeBrush}" Opacity="1" ClosedDisplayMode="Minimal">
+            <AppBarButton x:Name="Disconnect" Label="Stop" Icon="Stop" Visibility="Collapsed"/>
+            <AppBarButton x:Name="ScanDevices" Label="Scan" Icon="Refresh" Visibility="Collapsed" Flyout="{Binding}">
+            </AppBarButton>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="Setting" Label="Settings" Icon="Setting"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

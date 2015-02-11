@@ -1,0 +1,90 @@
+﻿<UserControl
+    x:Class="nRFToolbox.DeviceSelectionFlyoutControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uc="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    
+    <UserControl.Resources>
+        <DataTemplate x:Key="DeviceSelectionItemTemplate">
+            <uc:DeviceSelectionItems/>
+        </DataTemplate>
+        <Flyout x:Name="DeviceSelectionFlyout" Placement="Full">
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                    <Setter Property="Background" Value="{StaticResource MenuFlyoutBackgroundThemeBrush}"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource MenuFlyoutBorderThemeBrush}"/>
+                    <Setter Property="MinHeight" Value="100"/>
+                    <Setter Property="MinWidth" Value="300"/>
+                    <Setter Property="Opacity" Value="1"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
+                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+            <Grid x:Name="DeviceList" Width="350" MinHeight="350">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="76"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="#009CDE"
+                                    BorderThickness="0,0,0,0"/>
+                <StackPanel Margin="0,0,0,0" Grid.Row="0">
+                    <TextBlock x:Name="FlyoutHeaderBluetoothEnabled" HorizontalAlignment="Left" Text="Paired devices" Foreground="{ThemeResource PhoneAccentBrush}" FontSize="32" Margin="5,18,0,14"/>
+                </StackPanel>
+                <StackPanel x:Name="AvailableDevicesPanel" Grid.Row="1" Visibility="Visible">
+                    <!--<ProgressBar x:Name="SearchDeviceProgressBar" IsIndeterminate="True" HorizontalAlignment="Left" Width="250" Height="10" Visibility="Visible" Background="Transparent"/>-->
+                    <TextBlock x:Name="InfoSearching" HorizontalAlignment="Left" Text="(Only matched devices will be shown)" Style="{StaticResource AboutTextStyle}" Margin="9,0,0,0" Visibility="Visible"/>
+                    <TextBlock x:Name="Searching" HorizontalAlignment="Left" Text="Searching..." Style="{StaticResource AboutTextStyle}" Margin="9,0,0,0" Visibility="Visible"/>
+                    <ListView x:Name="AvailableDevicesList" 
+                                      ItemsSource="{Binding}"
+                                      ItemTemplate="{StaticResource DeviceSelectionItemTemplate}"                                   
+                                      Margin="10,0,0,0"
+                                      ScrollViewer.VerticalScrollMode="Enabled"
+                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                      >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <Grid>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal"/>
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="SelectionStates">
+                                                        <VisualState x:Name="Unselected">
+                                                            <Storyboard>
+                                                                <ColorAnimation Duration="0" Storyboard.TargetName="myback" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="SelectedUnfocused">
+                                                            <Storyboard>
+                                                                <ColorAnimation Duration="0" Storyboard.TargetName="myback" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1BA1E2"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Border x:Name="myback" Background="Transparent">
+                                                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </Flyout>
+    </UserControl.Resources>
+</UserControl>

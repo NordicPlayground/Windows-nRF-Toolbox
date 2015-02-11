@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>eb2553db-c72f-48da-9799-08c804f700b3</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>nRFToolbox</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DeviceInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\GattServiceManagerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SmartDispatcherTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ViewModelBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Structure\GridViewItemCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structure\NavigationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structure\ObservableDictionary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structure\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structure\SuspensionManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Resource\ListViewBackgroundBrush.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

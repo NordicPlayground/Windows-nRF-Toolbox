@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="NordicSemiconductorASA.nRFToolbox" Publisher="CN=BF5EA8A8-CA51-4770-914F-9AF51202A381" Version="1.1.0.1" />
+  <mp:PhoneIdentity PhoneProductId="81e491e4-b29a-4d87-864b-9aa0c62082ce" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>nRF Toolbox</DisplayName>
+    <PublisherDisplayName>Nordic Semiconductor ASA</PublisherDisplayName>
+    <Logo>Assets\image\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="nRF_Toolbox.App">
+      <m3:VisualElements DisplayName="nRF Toolbox" Square150x150Logo="Assets\image\Toolbox_360x360_WP.png" Square44x44Logo="Assets\image\SmallLogo.png" Description="nRF Toolbox" ForegroundText="light" BackgroundColor="#0098d9" ToastCapable="true">
+        <m3:DefaultTile Wide310x150Logo="Assets\image\WideLogo.png" Square71x71Logo="Assets\image\Toolbox_71x71_WP.png">
+          <m3:ShowNameOnTiles>
+            <m3:ShowOn Tile="square150x150Logo" />
+            <m3:ShowOn Tile="wide310x150Logo" />
+          </m3:ShowNameOnTiles>
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\image\SplashScreen.png" />
+        <m3:InitialRotationPreference>
+          <m3:Rotation Preference="portrait" />
+        </m3:InitialRotationPreference>
+      </m3:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="nRFToolbox.Background.ProximityBackgroundTask">
+          <BackgroundTasks>
+            <Task Type="systemEvent" />
+            <Task Type="timer" />
+            <Task Type="pushNotification" />
+            <m3:Task Type="deviceConnectionChange" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <DeviceCapability Name="proximity" />
+    <m2:DeviceCapability Name="bluetooth.genericAttributeProfile">
+      <m2:Device Id="any">
+        <m2:Function Type="serviceId:0000180d-0000-1000-8000-00805f9b34fb" />
+      </m2:Device>
+    </m2:DeviceCapability>
+  </Capabilities>
+</Package>
