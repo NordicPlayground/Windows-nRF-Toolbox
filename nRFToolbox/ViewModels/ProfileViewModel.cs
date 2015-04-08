@@ -25,7 +25,7 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using nRFToolbox.UI;
 using nRFToolbox.Base;
-using nRFToolbox.Service;
+using Common.Service;
 
 namespace nRFToolbox.ViewModels
 {
@@ -89,7 +89,7 @@ namespace nRFToolbox.ViewModels
 		}
 	}
 
-	public class StoreData
+	public class GattServiceProfile
 	{
 		private GridViewItemCollection<ProfileViewModel> _Collection = new GridViewItemCollection<ProfileViewModel>();
 		public GridViewItemCollection<ProfileViewModel> Collection
@@ -101,7 +101,7 @@ namespace nRFToolbox.ViewModels
 		}
 
 
-		public StoreData()
+		public GattServiceProfile()
 		{
 			ProfileViewModel item;
 			Uri _baseUri = new Uri("ms-appx:///Assets/image/");
@@ -111,32 +111,32 @@ namespace nRFToolbox.ViewModels
 			item.SetLocalImage(_baseUri, "ic_hrs_feature.png");
 			_Collection.Add(item);
 
-			//item = new ProfileViewModel();
-			//item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.GLUCOSE;
-			//item.SetLocalImage(_baseUri, "ic_glucose_feature.png");
-			//item.PageId = ToolboxIdentifications.PageId.GLUCOSE;
-			//_Collection.Add(item);
+			item = new ProfileViewModel();
+			item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.GLUCOSE;
+			item.SetLocalImage(_baseUri, "ic_glucose_feature.png");
+			item.PageId = ToolboxIdentifications.PageId.GLUCOSE;
+			_Collection.Add(item);
 
 			//item = new ProfileViewModel();
-			//item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.BLOOD_PRESSURE;
+			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.BLOOD_PRESSURE;
 			//item.PageId = ToolboxIdentifications.PageId.BLOOD_PRESSURE;
 			//item.SetLocalImage(_baseUri, "ic_bpm_feature.png");
 			//_Collection.Add(item);
 
 			//item = new ProfileViewModel();
-			//item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.CYCLING_SPEED_AND_CADENCE;
+			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.CYCLING_SPEED_AND_CADENCE;
 			//item.PageId = ToolboxIdentifications.PageId.CYCLING_SPEED_AND_CADENCE;
 			//item.SetLocalImage(_baseUri, "ic_csc_feature.png");
 			//_Collection.Add(item);
 
-			//item = new ProfileViewModel();
-			//item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.DEVICE_FIRMWARE_UPDATE;
-			//item.PageId = ToolboxIdentifications.PageId.DEVICE_FIRMWARE_UPDATE;
-			//item.SetLocalImage(_baseUri, "ic_dfu_feature.png");
-			//_Collection.Add(item);
+			item = new ProfileViewModel();
+			item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.DEVICE_FIRMWARE_UPDATE;
+			item.PageId = ToolboxIdentifications.PageId.DEVICE_FIRMWARE_UPDATE;
+			item.SetLocalImage(_baseUri, "ic_dfu_feature.png");
+			_Collection.Add(item);
 
 			//item = new ProfileViewModel();
-			//item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.HEALTH_THERMOMETER;
+			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.HEALTH_THERMOMETER;
 			//item.PageId = ToolboxIdentifications.PageId.HEALTH_THERMOMETER;
 			//item.SetLocalImage(_baseUri, "ic_hts_feature.png");
 			//_Collection.Add(item);
@@ -148,10 +148,17 @@ namespace nRFToolbox.ViewModels
 			_Collection.Add(item);
 
 			//item = new ProfileViewModel();
-			//item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.RUNNING_SPEED_AND_CADENCE;
+			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.RUNNING_SPEED_AND_CADENCE;
 			//item.PageId = ToolboxIdentifications.PageId.RUNNING_SPEED_AND_CADENCE;
 			//item.SetLocalImage(_baseUri, "ic_rsc_feature.png");
 			//_Collection.Add(item);
+
+
+			item = new ProfileViewModel();
+			item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.NORDIC_UART;
+			item.PageId = ToolboxIdentifications.PageId.NORDIC_UART;
+			item.SetLocalImage(_baseUri, "ic_uart192.png");
+			_Collection.Add(item);
 		}
 	}
 }

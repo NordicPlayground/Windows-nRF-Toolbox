@@ -21,12 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 
-namespace nRFToolbox.Base
+namespace nRFToolbox.ViewModels
 {
 	public partial class ViewModelBase
 	{
-		public const string DEFAULT_BATTERY = "n/a";
-		public const string DEFAULT_DEVICE = "DEFAULT_DEVICE";
+		public const string DEFAULT_BATTERYVALUE = "n/a";
+		public const string DEFAULT_DEVICE = "DEVICE_NAME";
 		async partial void HideStatusBar()
 		{
 			StatusBar statusBar = StatusBar.GetForCurrentView();

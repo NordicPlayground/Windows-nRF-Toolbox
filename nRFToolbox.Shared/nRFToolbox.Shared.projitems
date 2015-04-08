@@ -9,11 +9,45 @@
     <Import_RootNamespace>nRFToolbox</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ContinuationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DeviceInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\GattServiceManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SmartDispatcherTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ViewModelBase.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AppBarControl.xaml.cs">
+      <DependentUpon>AppBarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DeviceSelectionFlyoutControl.xaml.cs">
+      <DependentUpon>DeviceSelectionFlyoutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DeviceSelectionItems.xaml.cs">
+      <DependentUpon>DeviceSelectionItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DialogItem.xaml.cs">
+      <DependentUpon>DialogItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ErrorMessageFlyout.xaml.cs">
+      <DependentUpon>ErrorMessageFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtentedSplashScreen.xaml.cs">
+      <DependentUpon>ExtentedSplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\HeartRateLineChart.xaml.cs">
+      <DependentUpon>HeartRateLineChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolboxHeaderLayout.xaml.cs">
+      <DependentUpon>ToolboxHeaderLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolboxProfilesGridView.xaml.cs">
+      <DependentUpon>ToolboxProfilesGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Structure\GridViewItemCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Structure\NavigationHelper.cs" />
@@ -22,8 +56,110 @@
     <Compile Include="$(MSBuildThisFileDirectory)Structure\SuspensionManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\background.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\background_1152x1920_no_text.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\background_landscape.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Battery.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Battery@2x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\CortanaMicrophone.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_bpm_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_csc_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_dfu_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_glucose_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_hrs_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_hts_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_proximity_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_rsc_feature.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\nordic_n_logo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Proximity_Lock_w360x340.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Proximity_Unlock_w360x340.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SmallLogo.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SmallLogo.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SmallLogo.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SplashScreen.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SplashScreen.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SplashScreen.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SplashScreen100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\SplashScreen140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\StoreLogo.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\StoreLogo.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\StoreLogo.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_360x360_WP.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_360x360_WP.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_360x360_WP.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_71x71_WP.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_71x71_WP.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_71x71_WP.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_106x106_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_120x120_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_150x150_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_170x170_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_210x210_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_360x360_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_44x44_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_50x50_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_62x62_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_70x70_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Square_99x99_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Wide_310x150_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Wide_434x210_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\Toolbox_Wide_744x360_WP.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_uart192.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\WideLogo.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\WideLogo.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\WideLogo.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Common\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\AppBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\DeviceSelectionFlyoutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\DeviceSelectionItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\DialogItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ErrorMessageFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ExtentedSplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\HeartRateLineChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ToolboxHeaderLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ToolboxProfilesGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resource\ListViewBackgroundBrush.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\dat\DFUBlinkyExample.zip" />
   </ItemGroup>
 </Project>

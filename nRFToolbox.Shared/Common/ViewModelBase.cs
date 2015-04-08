@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 
-namespace nRFToolbox.Base
+namespace nRFToolbox.ViewModels
 {
 	public partial class ViewModelBase : INotifyPropertyChanged
 	{
@@ -45,7 +45,9 @@ namespace nRFToolbox.Base
 			{
 				Windows.Networking.Proximity.PeerFinder.Start();
 				Windows.Networking.Proximity.PeerInformation result = (await Windows.Networking.Proximity.PeerFinder.FindAllPeersAsync()).FirstOrDefault();
-				return IsBluetoothOn = true;
+				//if(peers != null)
+				//	return IsBluetoothOn = false;
+				return IsBluetoothOn = true; //boolean variable
 			}
 			catch (Exception ex)
 			{

@@ -44,9 +44,10 @@ namespace nRFToolbox.ViewModels
 
 		public void AddBLEDevice(BluetoothLEDevice device)
 		{
-			var exist = this.items.FirstOrDefault(obj => obj.DeviceID == device.DeviceId);
-			if (exist != null)
-				this.items.Remove(exist);
+			//var exist = this.items.FirstOrDefault(obj => obj.DeviceID == device.DeviceId);
+			//if (exist != null)
+			//	this.items.Remove(exist);
+			this.items.Clear();
 			var addedDevice = new DeviceInformationItem(device);
 			this.items.Add(addedDevice);
 		}

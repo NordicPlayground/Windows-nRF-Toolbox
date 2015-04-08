@@ -21,7 +21,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace nRFToolbox.Common
+namespace Common.Utility
 {
   public sealed class ConvertingTools
 	{
@@ -36,6 +36,28 @@ namespace nRFToolbox.Common
 			var newformat = Regex.Replace(macadres, regex, replace);
 			return newformat.ToString().ToUpper();
 
+		}
+		public static int Percent(int number, int dividedBy)
+		{
+			int Percentage = (int)Math.Round((double)(number * 100) / dividedBy);
+			return Percentage;
+		}
+
+		public static string TryGetShortFileName(string fullName) 
+		{
+			try 
+			{
+				StringBuilder builder = new StringBuilder();
+				var nameArrary = fullName.Split('.');
+				var extension = nameArrary[nameArrary.Length - 1];
+				var shortName = nameArrary[0].Substring(0, 5);
+				builder.Append(shortName + "..." + extension);
+				return builder.ToString();
+			}
+			catch(Exception)
+			{
+				return fullName;
+			}
 		}
 	}
 }

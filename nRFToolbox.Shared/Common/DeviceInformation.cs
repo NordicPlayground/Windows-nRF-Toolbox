@@ -36,5 +36,6 @@ namespace nRFToolbox.Base
 		public bool AlertOnDevice { get; set; }
 		public string DeviceID { get; set; }
 		public Dictionary<string, GattDeviceService> Services = new Dictionary<string, GattDeviceService>();
+
 	}
 }

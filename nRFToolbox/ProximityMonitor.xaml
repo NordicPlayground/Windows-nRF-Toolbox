@@ -18,31 +18,30 @@
         <StackPanel Grid.Row="0">
             <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
         </StackPanel>
-        <Grid x:Name="PageContent" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
+        <Grid x:Name="PageContent" Margin="20,10,10,19"  HorizontalAlignment="Left" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="HeartRateMonitorInfoPanel" Grid.Row="0" Margin="0,10,0,0">
+            <Grid x:Name="ProximityInfoPanel" Margin="0,10,20,0" Grid.Row="0" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Canvas Grid.Row="0" Grid.Column="0" Width="50" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
                     <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25"  Source="Assets/image/Battery@2x.png"  />
                     <TextBlock x:Name="BatteryLevel" Foreground="Beige" Text="{Binding BatteryLevel}" FontSize="15" Canvas.Left="9" Canvas.Top="4"/>
                 </Canvas>
-                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="DeviceName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelTextStyle}"/>
-                <Canvas Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image x:Name="ProximityUnlocked" HorizontalAlignment="Left" VerticalAlignment="Center" Height="240" Width="254"  Source="Assets/image/Proximity_Unlock_w360x340.png" Canvas.Left="30" Canvas.Top="60"/>
-                    <Image x:Name="Proximitylocked" HorizontalAlignment="Left" VerticalAlignment="Center" Height="240" Width="254"  Source="Assets/image/Proximity_Lock_w360x340.png" Canvas.Left="30" Canvas.Top="60" Visibility="Collapsed"/>
-                </Canvas>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="DeviceName" HorizontalAlignment="Left" Margin="80,0,0,0" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelLabelTextStyle}"/>
             </Grid>
+            <Canvas Margin="20,50" >
+                <Image x:Name="ProximityUnlocked" HorizontalAlignment="Center" VerticalAlignment="Center" Height="240" Width="254"  Source="Assets/image/Proximity_Unlock_w360x340.png" Canvas.Left="30" Canvas.Top="60"/>
+                <Image x:Name="Proximitylocked" HorizontalAlignment="Left" VerticalAlignment="Center" Height="240" Width="254"  Source="Assets/image/Proximity_Lock_w360x340.png" Canvas.Left="30" Canvas.Top="60" Visibility="Collapsed"/>
+            </Canvas>
         </Grid>
     </Grid>
 </Page>

@@ -14,7 +14,6 @@
  *PURPOSE ARE DISCLAIMED. *IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF *SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, *DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED *OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-using nRFToolbox.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,17 +28,18 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using BackgroundExecutiondManager = Windows.ApplicationModel.Background.BackgroundExecutionManager;
 using nRFToolbox.Base;
-using nRFToolbox.Service.GattService;
 using nRFToolbox.DataModel;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Bluetooth;
+using Common.Service;
+using Common.Service.GattService;
 
 
 namespace nRFToolbox.ViewModels
 {
 	public class ProximityViewModel : ViewModelBase
 	{
-		private string batteryLevel = DEFAULT_BATTERY;
+		private string batteryLevel = DEFAULT_BATTERYVALUE;
 		public string BatteryLevel
 		{
 			get 
@@ -166,7 +166,7 @@ namespace nRFToolbox.ViewModels
 		}
 
 		/// <summary>
-		/// If there is any uncached task in service, we register new one.
+		/// If there is any uncached task in glucoseService, we register new one.
 		/// </summary>
 		/// <param name="e">Existing Link Loss Task 
 		/// This is task is only registered through Proximity Monitor</param>
@@ -213,9 +213,17 @@ namespace nRFToolbox.ViewModels
 			if (ImmediateAlertService.IsServiceStarted)
 			{
 				this.ImmediateAlertService.WriteAlertLevel(AlertLevelEnum.HighAlert);
-				return result = true;
+				result = true;
+			}else
+			{
+				//ShowServiceNotStartMessage();
 			}
 			return result;
+		}
+
+		public bool IsImmediateServiceStarted() 
+		{
+			return ImmediateAlertService.IsServiceStarted;
 		}
 
 		public bool SetImmediateAlertOff() 
@@ -224,7 +232,11 @@ namespace nRFToolbox.ViewModels
 			if (ImmediateAlertService.IsServiceStarted)
 			{
 				this.ImmediateAlertService.WriteAlertLevel(AlertLevelEnum.NoAlert);
-				return result = true;
+				result = true;
+			}
+			else 
+			{
+				//ShowServiceNotStartMessage();
 			}
 			return result;
 		}
@@ -247,7 +259,7 @@ namespace nRFToolbox.ViewModels
 				{
 					if (!await DeviceSelectionViewModel.IsBluetoothSettingOn())
 					{
-						ShowErrorMessage();
+						ShowBluetoothOffErrorMessage();
 					}
 				}
 				return true;
@@ -261,21 +273,34 @@ namespace nRFToolbox.ViewModels
 		public void StopServices() 
 		{
 			this.BatteryService.ValueChangeCompleted -= BatteryService_ValueChangeCompleted;
-			this.BatteryLevel = DEFAULT_BATTERY;
+			this.BatteryLevel = DEFAULT_BATTERYVALUE;
 			BatteryService.Stop();
 			LinkLossService.Stop();
 			ImmediateAlertService.Stop();
 		}
 
-		#region popup message
+		#region popup messageType
 
 		public string BluetoothIsOffMessageTitle = "Can't scan devices";
-		public string BluetoothIsOffMessageContent = "Bluetooth setting is off";
-		public void ShowErrorMessage()
+		public string BluetoothIsOffMessageContent = "Bluetooth settingButton is off";
+		public string ServiceNotStartMessageContent = "Select a device by clicking scan button.";
+		public void ShowBluetoothOffErrorMessage()
 		{
 			var alternative1 = new UICommand("Go to settings", new UICommandInvokedHandler(GoToBluetoothSettingPage), 0);
 			var alternative2 = new UICommand("Close", new UICommandInvokedHandler(CloseBluetoothIsOffMessage), 1);
 			ShowMessage(BluetoothIsOffMessageTitle, BluetoothIsOffMessageContent, alternative1, alternative2);
+		}
+		public async void ShowServiceNotStartMessage()
+		{
+			var alternative1 = new UICommand("Close", new UICommandInvokedHandler(ServiceNotStartMessage), 0);
+			var messageDialog = new MessageDialog(ServiceNotStartMessageContent);
+			messageDialog.Commands.Add(alternative1);
+			messageDialog.CancelCommandIndex = 0;
+			await messageDialog.ShowAsync();
+		}
+
+		private void ServiceNotStartMessage(IUICommand command)
+		{
 		}
 		public override void ShowMessage(string title, string content, UICommand alternative1, UICommand alternative2)
 		{

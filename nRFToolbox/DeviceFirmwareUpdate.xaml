@@ -15,47 +15,37 @@
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
             <!--<TextBlock x:Name="Title"  HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" Text="DFU"/>-->
-
         </StackPanel>
-        <StackPanel Margin="10,100">
-            <ScrollViewer ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility ="Visible">
-
-
-                <Grid x:Name="PageContent"  HorizontalAlignment="Center"  ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility ="Visible" VerticalAlignment="Center" Grid.Row="1" Height="500" Width="300">
-            <!--<Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" x:Name="DeviceName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelLabelTextStyle}" Margin="19,10,10,0" />
+        <Border Grid.Row="2" Margin="19,10,10,19" BorderThickness="19,1,1,1" BorderBrush="#009CDE">
+            <Grid x:Name="PageContent" Margin="15,10,10,19">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="HeartRateMonitorDashBoard" Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid x:Name="HeartRateMonitorInfoPanel" Grid.Row="0">
-                    <TextBlock x:Name="DeviceName" HorizontalAlignment="Left"  Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" Foreground="Black" VerticalAlignment="Top"/>
-                </Grid>
-
-                </Grid>
-                <StackPanel x:Name="HeartRateMonitorTitle" Grid.Column="0" Margin="-157,10,157,-10">
-                    <TextBlock FontFamily="Segoe WP" Text="Device Firmware Update" FontSize="36" Foreground="Black" Margin ="0,500,-350,0" Height="50" UseLayoutRounding="False" d:LayoutRounding="Auto">
-                        <TextBlock.RenderTransform>
-                            <RotateTransform Angle="-90" />
-                        </TextBlock.RenderTransform>
-                    </TextBlock>
-                </StackPanel>-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock x:Name="DeviceName" Grid.Row="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" Foreground="Black" VerticalAlignment="Top"/>
-            <!--<TextBlock x:Name="DeviceNsame" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlssssssssssssock" Foreground="Black" VerticalAlignment="Top"/>-->
+                <TextBlock x:Name="FirmwareType" Grid.Row="0" Grid.Column="0" Text="{Binding SelectedDeviceFirmwareTypeName}" Style="{StaticResource InfoPanelTextStyle}" Margin="0,0,0,0"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Image file name:" Style="{StaticResource InfoPanelTextStyle}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ImageFileNames}" Style="{StaticResource InfoPanelTextStyle}" Margin="10,0"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="#939597" Grid.Row="3" BorderThickness="0,2,0,0" Margin="19,0,10,0">
+            
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="Status:" Style="{StaticResource InfoPanelTextStyle}" Foreground="Black"/>
+                <TextBlock x:Name="InformationPanel" Text="{Binding Status}" Style="{StaticResource InfoPanelTextStyle}" Margin="0,0,0,15"/>
+                <ProgressBar x:Name="SendingProgressBar" IsIndeterminate="False" Maximum="100" Value="{Binding ProgressPercent}" Width="380" HorizontalAlignment="Left" Height="25"  Visibility="Collapsed"/>
+            </StackPanel>
+        </Border>
         </Grid>
-            </ScrollViewer>
-        </StackPanel>
-    </Grid>
 </Page>

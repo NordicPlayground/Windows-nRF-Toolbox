@@ -1,0 +1,13 @@
+/nRFToolbox/bin/
+/nRFToolbox/obj/
+/nRFToolbox.Background/bin/
+/nRFToolbox.Background/obj/
+/nRFToolbox.Common/obj/
+/nRFToolbox.Common/bin/
+/nRFToolbox.Service/obj/
+/nRFToolbox.Service/bin/
+/nRFToolbox.Windows/bin/
+/nRFToolbox.Windows/obj/
+/nRFToolbox/AppPackages
+/nRFToolbox/BundleArtifacts
+/packages

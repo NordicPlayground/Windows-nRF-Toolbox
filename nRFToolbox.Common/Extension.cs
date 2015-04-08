@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nRFToolbox.Common
+namespace Common.Utility
 {
 	public static class Extension
 	{

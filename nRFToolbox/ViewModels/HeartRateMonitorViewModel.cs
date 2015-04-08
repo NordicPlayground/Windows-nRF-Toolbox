@@ -30,10 +30,10 @@ using Windows.UI.Xaml;
 using Windows.System;
 using Windows.ApplicationModel.Background;
 using nRFToolbox.Base;
-using nRFToolbox.Service.GattService;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
-using nRFToolbox.Service;
+using Common.Service.GattService;
+using Common.Service;
 
 namespace nRFToolbox.ViewModels
 {
@@ -42,7 +42,7 @@ namespace nRFToolbox.ViewModels
 		public string PageId = ToolboxIdentifications.PageId.HEART_RATE;
 		public string DeviceAddress { get; set; }
 
-		private string _bodySensorLocation;
+		private string _bodySensorLocation = DEFAULT_BATTERYVALUE;
 		public string BodySensorLocation 
 		{
 			get 
@@ -73,7 +73,7 @@ namespace nRFToolbox.ViewModels
 			}
 		}
 
-		private string _batteryLevel;
+		private string _batteryLevel = DEFAULT_BATTERYVALUE;
 		public string BatteryLevel
 		{
 			get
@@ -87,7 +87,7 @@ namespace nRFToolbox.ViewModels
 			}
 		}
 
-		private string _beatPerMinute;
+		private string _beatPerMinute = DEFAULT_BATTERYVALUE;
 		public string BeatPerMinute 
 		{ 
 			get
@@ -214,6 +214,7 @@ namespace nRFToolbox.ViewModels
 
 		public async Task<bool> UpdateAvailableDevice()
 		{
+			DeviceSelectionViewModel.ClearCachedDevices();
 			try 
 			{
 				DeviceSelectionViewModel.ClearCachedDevices();
@@ -246,10 +247,10 @@ namespace nRFToolbox.ViewModels
 			this.batteryService.Stop();
 		}
 
-		#region popup message
+		#region popup messageType
 
 		public string BluetoothIsOffMessageTitle = "Can't scan devices";
-		public string BluetoothIsOffMessageContent = "Bluetooth setting is off";
+		public string BluetoothIsOffMessageContent = "Bluetooth settingButton is off";
 		public void ShowErrorMessage()
 		{
 			var alternative1 = new UICommand("Go to settings", new UICommandInvokedHandler(GoToBluetoothSettingPage), 0);
@@ -274,9 +275,9 @@ namespace nRFToolbox.ViewModels
 
 		public ToolboxDeviceSelectionViewModel DeviceSelectionViewModel { get; set; }
 
-		public Service.GattService.IHeartRateService heartRateService { get; set; }
+		public IHeartRateService heartRateService { get; set; }
 
-		public Service.GattService.IBatteryService batteryService { get; set; }
+		public IBatteryService batteryService { get; set; }
 
 		private CoreDispatcher Dispatcher { get; set; }
 	}

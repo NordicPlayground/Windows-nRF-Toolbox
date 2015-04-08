@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="nRFToolbox.AppBarControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uc="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="DeviceSelectionItemTemplate">
+            <uc:DeviceSelectionItems/>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Page.BottomAppBar>
+        <CommandBar Background="{StaticResource AppBarBackgroundThemeBrush}" Opacity="1">
+            <AppBarButton x:Name="SaveLocal" Label="Read to phone" Icon="SaveLocal" Visibility="Collapsed"/>
+            <AppBarButton x:Name="Clear" Label="Clear" Icon="Clear" Visibility="Collapsed"/>
+            <AppBarButton x:Name="Send" Label="Send" Icon="Send" Visibility="Collapsed"/>
+            <AppBarButton x:Name="Speak" Label="Speak" Icon="Microphone" Visibility="Collapsed"/>
+            <AppBarButton x:Name="Disconnect" Label="Stop" Icon="Stop" Visibility="Collapsed"/>
+            <AppBarButton x:Name="ScanDevices" Label="Scan" Icon="Refresh" Visibility="Collapsed" Flyout="{Binding}"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="Setting" Label="Settings"/>
+                <AppBarButton x:Name="About" Label="About" Visibility="Collapsed"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

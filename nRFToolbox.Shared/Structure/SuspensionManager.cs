@@ -87,7 +87,7 @@ namespace nRFToolbox.UI
 		/// state, which in turn gives their active <see cref="Page"/> an opportunity restore its
 		/// state.
 		/// </summary>
-		/// <param name="sessionBaseKey">An optional key that identifies the firmwareType of session.
+		/// <param name="sessionBaseKey">An optional toolboxSettingContainerKey that identifies the firmwareType of session.
 		/// This can be used to distinguish between multiple application launch scenarios.</param>
 		/// <returns>An asynchronous task that reflects when session state has been read.  The
 		/// content of <see cref="SessionState"/> should not be relied upon until this task
@@ -136,21 +136,21 @@ namespace nRFToolbox.UI
 		/// Registers a <see cref="Frame"/> instance to allow its navigation history to be saved to
 		/// and restored from <see cref="SessionState"/>.  Frames should be registered once
 		/// immediately after creation if they will participate in session state management.  Upon
-		/// registration if state has already been restored for the specified key
+		/// registration if state has already been restored for the specified toolboxSettingContainerKey
 		/// the navigation history will immediately be restored.  Subsequent invocations of
 		/// <see cref="RestoreAsync"/> will also restore navigation history.
 		/// </summary>
 		/// <param name="frame">An instance whose navigation history should be managed by
 		/// <see cref="SuspensionManager"/></param>
-		/// <param name="sessionStateKey">A unique key into <see cref="SessionState"/> used to
+		/// <param name="sessionStateKey">A unique toolboxSettingContainerKey into <see cref="SessionState"/> used to
 		/// store navigation-related information.</param>
-		/// <param name="sessionBaseKey">An optional key that identifies the firmwareType of session.
+		/// <param name="sessionBaseKey">An optional toolboxSettingContainerKey that identifies the firmwareType of session.
 		/// This can be used to distinguish between multiple application launch scenarios.</param>
 		public static void RegisterFrame(Frame frame, String sessionStateKey, String sessionBaseKey = null)
 		{
 			if (frame.GetValue(FrameSessionStateKeyProperty) != null)
 			{
-				throw new InvalidOperationException("Frames can only be registered to one session state key");
+				throw new InvalidOperationException("Frames can only be registered to one session state toolboxSettingContainerKey");
 			}
 
 			if (frame.GetValue(FrameSessionStateProperty) != null)
@@ -164,7 +164,7 @@ namespace nRFToolbox.UI
 				sessionStateKey = sessionBaseKey + "_" + sessionStateKey;
 			}
 
-			// Use a dependency property to associate the session key with a frame, and keep a list of frames whose
+			// Use a dependency property to associate the session toolboxSettingContainerKey with a frame, and keep a list of frames whose
 			// navigation state should be managed
 			frame.SetValue(FrameSessionStateKeyProperty, sessionStateKey);
 			_registeredFrames.Add(new WeakReference<Frame>(frame));

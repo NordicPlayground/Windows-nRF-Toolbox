@@ -46,7 +46,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using nRFToolbox.UI;
 using nRFToolbox.DataModel;
-using nRFToolbox.Service;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -75,8 +74,8 @@ namespace nRFToolbox
 			RegisterControls();
 			//Register framwork elements used in this page
 			deviceFirmwareUpdateViewModel = new DeviceFirmwareUpdateViewModel();
+			this.DataContext = deviceFirmwareUpdateViewModel;
 			RegisterFramworkElements();
-			//Check Bluetooth Setting
 		}
 
 		private void RegisterControls()
@@ -102,21 +101,29 @@ namespace nRFToolbox
 			scanButton.Visibility = Visibility.Visible;
 			disconnectButton = (AppBarButton)appBarPage.FindName(AppBarControl.DISCONNECT);
 			disconnectButton.Click += DisconnectButton_Clicked;
-			//resolve elements for device selection control
+			settingButton = (AppBarButton)appBarPage.FindName(AppBarControl.TOOLBOX_SETTING);
+			settingButton.Click += SettingButton_Clicked;			//resolve elements for device selection control
 			deviceSelectionFlyout = deviceSelectionControl.FindName(DeviceSelectionFlyoutControl.DEVICE_SELECTION_FLYOUT) as Flyout;
+			Searching = deviceSelectionControl.FindName(DeviceSelectionFlyoutControl.SEARCHING) as TextBlock;
 			availableDevicesListInDeviceSelectionFlyoutContent = deviceSelectionControl.FindName(DeviceSelectionFlyoutControl.AVAILABLE_DEVICE_LIST) as ListView;
 			availableDevicesListInDeviceSelectionFlyoutContent.IsItemClickEnabled = true;
 			availableDevicesListInDeviceSelectionFlyoutContent.ItemClick += Device_Clicked;
 			availableDevicesListInDeviceSelectionFlyoutContent.ItemsSource = deviceFirmwareUpdateViewModel.DeviceSelectionViewModel.BleDevices;
-			//resolve elements for error message control
+			//resolve elements for error messageType control
 		}
-		private async void DisconnectButton_Clicked(object sender, RoutedEventArgs e)
+
+		private void DisconnectButton_Clicked(object sender, RoutedEventArgs e)
 		{
-			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			DFUOffModelUI();
+			deviceFirmwareUpdateViewModel.StopDFUService();
+			deviceFirmwareUpdateViewModel.ClearStatus();
+		}
+
+		private void SettingButton_Clicked(object sender, RoutedEventArgs e)
+		{
+			if (!Frame.Navigate(typeof(Settings), deviceFirmwareUpdateViewModel.PageId))
 			{
-				this.scanButton.Visibility = Visibility.Visible;
-				this.disconnectButton.Visibility = Visibility.Collapsed;
-			});
+			}
 		}
 
 		private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
@@ -127,34 +134,48 @@ namespace nRFToolbox
 		private async void Device_Clicked(object sender, ItemClickEventArgs e)
 		{
 			this.deviceSelectionFlyout.Hide();
-			chosenBLEDevice = e.ClickedItem as DeviceInformationItem;
-			this.DeviceName.Text = chosenBLEDevice.CompleteDeviceName;
-			deviceFirmwareUpdateViewModel.StartDeviceFirmwareUpdate(chosenBLEDevice);
+			var chosenBLEDevice = e.ClickedItem as DeviceInformationItem;
+			this.deviceFirmwareUpdateViewModel.DeviceName = chosenBLEDevice.CompleteDeviceName;
 			if (chosenBLEDevice.ConnectionStatus == BluetoothConnectionStatus.Connected)
 			{
-				await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+				DFUStartModelUI();
+				if (await deviceFirmwareUpdateViewModel.StartDeviceFirmwareUpdate(chosenBLEDevice))
 				{
-					this.scanButton.Visibility = Visibility.Collapsed;
-					this.disconnectButton.Visibility = Visibility.Visible;
-				});
+					await deviceFirmwareUpdateViewModel.UpdateDFUStatus(DeviceFirmwareUpdateStatusEnum.START_DFU);
+				}
+			}
+			else
+			{
+				await deviceFirmwareUpdateViewModel.UpdateDFUStatus(DeviceFirmwareUpdateStatusEnum.DEVICE_NOT_CONNECTED);
 			}
 		}
 
-		private async void AddLogText(string text)
+		void DFUStartModelUI() 
 		{
-			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-			{
-				this.PageContent.RowDefinitions.Insert(logEventCount, new RowDefinition() { Height = GridLength.Auto});
-				TextBlock commandSwitch = new TextBlock() { Text = DateTime.Now.Millisecond.ToString() + " : " + text, Foreground = new SolidColorBrush(Colors.Blue), TextWrapping = TextWrapping.Wrap};
-				Grid.SetRow(commandSwitch, logEventCount++);
-				this.PageContent.Children.Add(commandSwitch);
-			});
+			this.scanButton.Visibility = Visibility.Collapsed;
+			this.disconnectButton.Visibility = Visibility.Visible;
+			this.SendingProgressBar.Visibility = Visibility.Visible;
+		}
+		void DFUOffModelUI() 
+		{
+			this.scanButton.Visibility = Visibility.Visible;
+			this.disconnectButton.Visibility = Visibility.Collapsed;
+			this.SendingProgressBar.Visibility = Visibility.Collapsed;
 		}
 
-		void scanButton_Click(object sender, RoutedEventArgs e)
+
+		async void scanButton_Click(object sender, RoutedEventArgs e)
 		{
-			SetDeviceSelectionFlyout();
-			deviceFirmwareUpdateViewModel.UpdateAvailableDevice();
+			if (!this.deviceFirmwareUpdateViewModel.IsImagesReadyToSend())
+			{
+				deviceFirmwareUpdateViewModel.ShowSettingErrorMessage();
+			}
+			else 
+			{
+				SetDeviceSelectionFlyout();
+				await deviceFirmwareUpdateViewModel.UpdateAvailableDevice();
+				this.Searching.Visibility = Windows.UI.Xaml.Visibility.Collapsed;			
+			}
 		}
 
 		private void SetDeviceSelectionFlyout() 
@@ -163,46 +184,12 @@ namespace nRFToolbox
 			FlyoutBase.ShowAttachedFlyout(this.scanButton);
 		}
 
-		public void ShowBluetoothIsOffMessage()
-		{
-			var messageDialog = new MessageDialog(deviceFirmwareUpdateViewModel.BluetoothIsOffMessageContent, deviceFirmwareUpdateViewModel.BluetoothIsOffMessageTitle);
-			messageDialog.Commands.Add(new UICommand("Go to settings", new UICommandInvokedHandler(GoToBluetoothSettingPage), 0));
-			messageDialog.Commands.Add(new UICommand("Close", new UICommandInvokedHandler(CloseBluetoothIsOffMessage), 1));
-			messageDialog.DefaultCommandIndex = 0;
-			messageDialog.CancelCommandIndex = 1;
-			messageDialog.ShowAsync();
-		}
-
-		private void CloseBluetoothIsOffMessage(IUICommand command)
-		{ }
-
-		private async void GoToBluetoothSettingPage(IUICommand command)
-		{
-			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-			{
-				await Launcher.LaunchUriAsync(new Uri("ms-settings-bluetooth:"));
-			});
-		}
-
 		public ListView availableDevicesListInDeviceSelectionFlyoutContent { get; set; }
 
 		public Flyout deviceSelectionFlyout { get; set; }
 
 		#region NavigationHelper registration
 
-		/// <summary>
-		/// The methods provided in this section are simply used to allow
-		/// NavigationHelper to respond to the page's navigation methods.
-		/// <para>
-		/// Page specific logic should be placed in event handlers for the  
-		/// <see cref="NavigationHelper.LoadState"/>
-		/// and <see cref="NavigationHelper.SaveState"/>.
-		/// The navigation parameter is available in the LoadState method 
-		/// in addition to page state preserved during an earlier session.
-		/// </para>
-		/// </summary>
-		/// <param name="e">Provides receivedBytes for navigation methods and event
-		/// handlers that cannot cancel the navigation request.</param>
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			this.navigationHelper.OnNavigatedTo(e);
@@ -219,15 +206,7 @@ namespace nRFToolbox
 
 		public AppBarButton disconnectButton { get; set; }
 
-		private int logEventCount = 1;
-
 		public DeviceFirmwareUpdateViewModel deviceFirmwareUpdateViewModel { get; set; }
-
-		public TextBlock flyoutHeaderEnabled { get; set; }
-
-		public Button goToSetting { get; set; }
-
-		public TextBlock flyoutHeaderDisabled { get; set; }
 
 		public AppBarControl appBarPage { get; set; }
 
@@ -235,36 +214,8 @@ namespace nRFToolbox
 
 		public ErrorMessageFlyout errorMessageFlyout { get; set; }
 
-		public AppBarButton bluetoothSettingButton { get; set; }
+		private AppBarButton settingButton { get; set; }
 
-		public Task<bool> IsBluetoothOn { get; set; }
-
-		public DeviceInformationItem chosenBLEDevice { get; set; }
-
-		public GattCharacteristic controlPoint { get; set; }
-
-		public GattCharacteristic paket { get; set; }
-
-		public GattCharacteristic DFUVersion { get; set; }
-
-		public int receivedBytes { get; set; }
-
-		public int sendedBytes { get; set; }
-
-		public byte[][] trunks { get; set; }
-
-		public int sendFullPackThisTimes { get; set; }
-
-		public int sendPartialPackThisTimes { get; set; }
-
-		public int sendedTimes = 0;
-
-		public int PiecesPerTime = 10;
-
-		public bool IsFileTransferFinished = false;
-
-		public long startAt { get; set; }
-
-		public long stopAt { get; set; }
+		public TextBlock Searching { get; set; }
 	}
 }

@@ -1,22 +1,5 @@
-﻿/*Copyright (c) 2015, Nordic Semiconductor ASA
- *
- *Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
- *
- *1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
- *
- *2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other 
- *materials provided with the distribution.
- *
- *3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific 
- *prior written permission.
- *
- *THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- *PURPOSE ARE DISCLAIMED. *IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF *SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, *DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED *OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+﻿using Common.Service;
 using nRFToolbox.Base;
-using nRFToolbox.Service;
-using nRFToolbox.Service.GattService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +15,14 @@ namespace nRFToolbox.DataModel
 	public class DeviceInformationItem : DeviceInformationBase
 	{
 		public BluetoothLEDevice Device { get; set; }
+		//public string DeviceAddress { get; set; }
+		//public List<Boolean> Flags { get; set; }
+		//public string UUID { get; set; }
+		//public string CompleteDeviceName { get; set; }
+		//public bool AlertOnPhone { get; set; }
+		//public bool AlertOnDevice { get; set; }
+		//public string DeviceID { get; set; }
+		//public Dictionary<string, GattDeviceService> Services = new Dictionary<string, GattDeviceService>();
 		private BluetoothConnectionStatus _connectionStatus;
 		public BluetoothConnectionStatus ConnectionStatus
 		{
@@ -139,6 +130,9 @@ namespace nRFToolbox.DataModel
 						case "00001530-1212-efde-1523-785feabcd123":
 							Services.Add(ToolboxIdentifications.GattServiceNames.DEVICE_FIRMWARE_UPDATE, service);
 							break;
+						case "6e400001-b5a3-f393-e0a9-e50e24dcca9e":
+							Services.Add(ToolboxIdentifications.GattServiceNames.NORDIC_UART, service);
+							break;
 						default:
 							break;
 					}
@@ -154,6 +148,7 @@ namespace nRFToolbox.DataModel
 				string[] values = ((string)LocalSettings.Values[DeviceAddress]).Split(',');
 				AlertOnPhone = bool.Parse(values[0]);
 				AlertOnDevice = bool.Parse(values[1]);
+				//alertLevel = (AlertLevel)Enum.Parse(typeof(AlertLevel), values[2]);
 			}
 			this.CompleteDeviceName = device.Name;
 			this.DeviceID = device.DeviceId;

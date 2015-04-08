@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Be sure to use the new v1.1 namespace to utilize the new PhraseTopic feature -->
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <!-- The CommandSet Name is used to programmatically access the CommandSet -->
+  <CommandSet xml:lang="en-us" Name="Uart">
+    <!-- The CommandPrefix provides an alternative to your full app name for invocation -->
+    <CommandPrefix> Toolbox </CommandPrefix>
+    <!-- The CommandSet Example appears in the global help alongside your app name -->
+    <Example> Open Voice Control </Example>
+
+    <Command Name="OpenUART">
+      <!-- The Command example appears in the drill-down help page for your app -->
+      <Example> Open Voice Control </Example>
+
+      <!-- ListenFor elements provide ways to say the command, including references to 
+            {PhraseLists} and {PhraseTopics} as well as [optional] words -->
+      <ListenFor> Open Voice Control </ListenFor>
+
+      <!--Feedback provides the displayed and spoken text when your command is triggered -->
+      <Feedback> Open Nordic UART... </Feedback>
+
+      <!-- Navigate specifies the desired page or invocation destination for the Command-->
+      <Navigate Target="NordicUART.xaml" />
+    </Command>
+
+    <!--<Command Name="OpennRFToolbox">
+      <Example> I want to go to the Windows Phone Dev center </Example>
+      <ListenFor> {naturalLanguage} </ListenFor>
+      <Feedback> Starting MSDN... </Feedback>
+      <Navigate Target="MainPage.xaml" />
+    </Command>-->
+
+    <!--<PhraseTopic Label="dictatedSearchTerms" Scenario="Search">
+      <Subject> MSDN </Subject>
+    </PhraseTopic>
+
+    <PhraseTopic Label="naturalLanguage" Scenario="Natural Language">
+      <Subject> MSDN </Subject>
+    </PhraseTopic>-->
+
+  </CommandSet>
+  <CommandSet xml:lang="en-gb" Name="Uart">
+    <!-- The CommandPrefix provides an alternative to your full app name for invocation -->
+    <CommandPrefix> Toolbox </CommandPrefix>
+    <!-- The CommandSet Example appears in the global help alongside your app name -->
+    <Example> Open Voice Control </Example>
+
+    <Command Name="OpenUART">
+      <!-- The Command example appears in the drill-down help page for your app -->
+      <Example> Open Voice Control </Example>
+
+      <!-- ListenFor elements provide ways to say the command, including references to 
+            {PhraseLists} and {PhraseTopics} as well as [optional] words -->
+      <ListenFor> Open Voice Control </ListenFor>
+
+      <!--Feedback provides the displayed and spoken text when your command is triggered -->
+      <Feedback> Open Nordic UART... </Feedback>
+
+      <!-- Navigate specifies the desired page or invocation destination for the Command-->
+      <Navigate Target="NordicUART.xaml" />
+    </Command>
+
+    <!--<Command Name="OpennRFToolbox">
+      <Example> I want to go to the Windows Phone Dev center </Example>
+      <ListenFor> {naturalLanguage} </ListenFor>
+      <Feedback> Starting MSDN... </Feedback>
+      <Navigate Target="MainPage.xaml" />
+    </Command>-->
+
+    <!--<PhraseTopic Label="dictatedSearchTerms" Scenario="Search">
+      <Subject> MSDN </Subject>
+    </PhraseTopic>
+
+    <PhraseTopic Label="naturalLanguage" Scenario="Natural Language">
+      <Subject> MSDN </Subject>
+    </PhraseTopic>-->
+
+  </CommandSet>
+</VoiceCommands>

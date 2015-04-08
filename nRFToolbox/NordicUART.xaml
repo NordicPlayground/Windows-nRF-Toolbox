@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="nRFToolbox.NordicUART"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="using:nRFToolbox"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="DialogTemplate">
+            <uc:DialogItem/>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid x:Name="MainPageLayout">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/image/background_1152x1920_no_text.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition MinHeight="300"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
+        </StackPanel>
+        <TextBlock Grid.Row="1" x:Name="DeviceName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelLabelTextStyle}" Margin="19,10,10,0" />
+        <Grid x:Name="PageContent" Grid.Row="2" Margin="19,10,19,10">
+            <ListBox x:Name="CommunicationLog" ItemsSource="{Binding Dialog}" Background="Transparent" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemTemplate="{StaticResource DialogTemplate}" />
+        </Grid>
+        <StackPanel Margin="19,0,28,0" Grid.Row="3" >
+            <TextBox x:Name="UserInput" Text="{Binding UserInput}" Tapped="UserInputTextboxTapped" HorizontalAlignment="Right" BorderBrush="#009CDE" Width="265" Height="37" FontFamily="Segoe WP Light" FontStyle="Italic" FontSize="18.667" />
+        </StackPanel>
+    </Grid>
+</Page>

@@ -8,6 +8,28 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <!--DataContext="{Binding SettingPageViewModelDictionary, RelativeSource={RelativeSource Self}}"-->
+    <Page.Resources>
+        <Flyout x:Key="SettingPageFlyout" Placement="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Canvas Grid.Row="1" Margin="19,19,0,0">
+                    <Image Source="Assets/image/Toolbox_Square_62x62_WP.png" MaxHeight="25" MaxWidth="25" Stretch="Uniform"/>
+                    <TextBlock Text="{Binding SettingPageErrorMessage}" Style="{StaticResource InfoPanelTextSettingStyle}" Foreground="White" Canvas.Left="50" />
+                </Canvas>
+            </Grid>
+            <!-- The DataContext of the Image that the flyout is attached to must be the Image's Source. -->
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                    <Setter Property="Background" Value="{ThemeResource PhoneAccentBrush}"/>
+                    <Setter Property="MinHeight" Value="50"/>
+                    <Setter Property="MinWidth" Value="50"/>
+                </Style>
+            </Flyout.FlyoutPresenterStyle>
+        </Flyout>
+    </Page.Resources>
 
     <Grid>
         <Pivot Title="SETTINGS" x:Name="SettingPivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
@@ -30,7 +52,7 @@
                         </StackPanel>
                     </Grid>
                     <Canvas Grid.Row="1" >
-                        <ToggleSwitch x:Name="AlertOnDeviceToggle" Header="Alert" Toggled="AlertOnDevice_Toggled" Width="350" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="2" Height="60"/>
+                        <ToggleSwitch x:Name="AlertOnDeviceToggle" IsOn="{Binding IsImmediateButtonOn}" FlyoutBase.AttachedFlyout="{StaticResource SettingPageFlyout}" Header="Alert" Toggled="AlertOnDevice_Toggled" Width="350" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="2" Height="60"/>
                         <TextBlock x:Name="Test" Style="{StaticResource AboutTextStyle}" Text="{Binding AlertToggleText}" Canvas.Left="2" Canvas.Top="68"/>
                     </Canvas>
                     <!--Double line list with text wrapping-->
@@ -58,7 +80,87 @@
                 </Grid>
             </PivotItem>
 
-            <!--Pivot item two-->
+            <PivotItem
+                x:Name="DFUSettingPage"
+                Margin="19,14.5,0,0"
+                Loaded="DFUSettingPage_Loaded"
+                Header="DFU"
+                DataContext="{Binding DeviceFirmwareUpdateSetting}"
+                CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "auto"/>
+                        <RowDefinition Height = "auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Style="{StaticResource AboutTextStyle}" Text="{Binding Information}"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height = "auto"/>
+                            <RowDefinition Height = "auto"/>
+                            <RowDefinition Height = "auto"/>
+                            <RowDefinition Height = "auto"/>
+                            <RowDefinition Height = "auto"/>
+                            <RowDefinition Height = "auto"/>
+                            <RowDefinition Height = "auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Grid.Column="0" Content="save at" Click="SaveImageAs_Clicked"/>
+                        <TextBlock Grid.Row="0" Text="{Binding FavoriteFolderName}" Style="{StaticResource InfoPanelTextSettingStyle}" Margin="120,15,20,0"  />
+                        <TextBlock Grid.Row="1" Text="Choose a destination to save downloaded from OneDrive. Or local folder will be used by default." Style="{StaticResource AboutTextStyle}"/>
+                        <StackPanel x:Name="ImageTypeRadioButton" Grid.Row="2" />
+                        <Button x:Name="SelectFilesButton" Grid.Row="3" Grid.Column="0" Content="browse" Click="SelectFilesButton_Clicked" Visibility="Collapsed"/>
+                        <TextBlock  x:Name="SelectedFiles" Grid.Row="3" Text="{Binding ImageFileNames}" TextWrapping="Wrap" Style="{StaticResource InfoPanelTextSettingStyle}" Margin="120,15,20,0" Visibility="Collapsed"/>
+                        <Button x:Name="UseExampleButton" Grid.Row="4" Grid.Column="0" Content="try example" Click="TryExample_Clicked" BorderBrush="{ThemeResource PhoneAccentBrush}"/>
+                    </Grid>
+                    <!--Double line list with text wrapping-->
+                </Grid>
+            </PivotItem>
+
+            <PivotItem
+                x:Name="UartSettingPage"
+                Margin="19,14.5,0,0"
+                Loaded="UartSettingPage_Loaded"
+                Header="UART"
+                DataContext="{Binding UARTSetting}"
+                CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource AboutTextStyle}" Text="{Binding Information}"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--Double line list with text wrapping-->
+                </Grid>
+            </PivotItem>
+
+            <PivotItem
+                x:Name="GlucoseSettingPage"
+                Margin="19,14.5,0,0"
+                Loaded="GlucoseSettingPage_Loaded"
+                Header="BGM"
+                DataContext="{Binding GlucoseMonitorSetting}"
+                CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource AboutTextStyle}" Text="{Binding Information}"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--Double line list with text wrapping-->
+                </Grid>
+            </PivotItem>
+            
             <PivotItem
                 x:Name="AboutPage"
                 Margin="19,14.5,0,0"
@@ -75,22 +177,23 @@
                         <RowDefinition Height = "*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
-                        <TextBlock Text="Information" Style="{StaticResource AboutHeaderTextStyle}" />
-                        <TextBlock x:Name="Information" Style="{StaticResource AboutTextStyle}" Text="{Binding Information}" />
+                        <TextBlock Text="Description" Style="{StaticResource AboutHeaderTextStyle}" />
+                        <TextBlock x:Name="Description" Style="{StaticResource AboutTextStyle}" Text="{Binding Description}" />
                     </StackPanel>
                     <StackPanel Grid.Row="1">
                         <TextBlock Text="Version" Style="{StaticResource AboutHeaderTextStyle}" />
                         <TextBlock x:Name="Version" Style="{StaticResource AboutTextStyle}" Text="{Binding Version}" />
                     </StackPanel>
                     <StackPanel Grid.Row="2">
-                        <TextBlock Text="Additional" Style="{StaticResource AboutHeaderTextStyle}" />
+                        <TextBlock Text="Additional Information" Style="{StaticResource AboutHeaderTextStyle}" />
                         <TextBlock x:Name="Additional" Style="{StaticResource AboutTextStyle}" Text="{Binding Additional}" />
                     </StackPanel>
                     <StackPanel Grid.Row="3">
                         <TextBlock Text="Nordic Semiconductor ASA" Style="{StaticResource AboutHeaderTextStyle}" />
                         <TextBlock x:Name="NordicSemiconductor" Style="{StaticResource AboutTextStyle}" Text="{Binding NordicSemiconductor}" />
                     </StackPanel>
-                    <Button Grid.Row="4" Content="Contact us" Click="WriteEmail_Clicked"/>
+                    <Button Grid.Row="4" Content="feedback" Click="WriteEmail_Clicked"/>
+                    <Button Grid.Row="4" Margin="120,0,0,0" Content="review" Click="WriteReview_Clicked"/>
                 </Grid>
             </PivotItem>
         </Pivot>

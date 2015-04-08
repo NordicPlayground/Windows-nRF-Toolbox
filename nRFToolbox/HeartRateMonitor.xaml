@@ -17,17 +17,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="stackPanel" Grid.Row="0">
             <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
         </StackPanel>
-        <Grid x:Name="PageContent" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
+        <Grid x:Name="PageContent" Margin="20,0,10,0" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="HeartRateMonitorInfoPanel" Grid.Row="0" Margin="0,10,0,0">
+            <Grid x:Name="HeartRateMonitorInfoPanel" Grid.Row="0" Margin="0,10,20,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition MinHeight="100"/>
@@ -42,14 +41,14 @@
                     <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25"  Source="Assets/image/Battery@2x.png"  />
                     <TextBlock x:Name="BatteryLevel" Foreground="Beige" Text="{Binding BatteryLevel}" Canvas.Left="9" Canvas.Top="4" FontSize="16"/>
                 </Canvas>
-                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="DeviceName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelTextStyle}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="DeviceName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelLabelTextStyle}"/>
                 <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom">
                     <TextBlock  x:Name="BodySensorLocation" Text="{Binding BodySensorLocation}" HorizontalAlignment="Left" TextWrapping="Wrap" Style="{StaticResource InfoPanelTextStyle}" />
-                    <TextBlock  x:Name="LabelBodySensorLocation" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="detected position" Style="{StaticResource InfoPanelLabelTextStyle}"  />
+                    <TextBlock  x:Name="LabelBodySensorLocation" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="sensor position" Style="{StaticResource InfoPanelLabelTextStyle}"  />
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <TextBlock x:Name="BeatPerMinute" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="{Binding BeatPerMinute}" VerticalAlignment="Bottom" Style="{StaticResource InfoPanelTextStyle}"  />
-                    <TextBlock x:Name="LabelBeatPerMinute" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Text="bpm" Style="{StaticResource InfoPanelLabelTextStyle}"  />
+                    <TextBlock x:Name="LabelBeatPerMinute" VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Text="beats" Style="{StaticResource InfoPanelLabelTextStyle}"  />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">

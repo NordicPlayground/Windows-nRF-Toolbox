@@ -47,8 +47,8 @@ using Windows.ApplicationModel.Background;
 using nRFToolbox.ViewModels;
 using nRFToolbox.UI;
 using nRFToolbox.Base;
-using nRFToolbox.Service.GattService;
-using nRFToolbox.Service;
+using Common.Service.GattService;
+using nRFToolbox.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -292,8 +292,7 @@ namespace nRFToolbox
 		public ErrorMessageFlyout errorMessageFlyout { get; set; }
 
 		public ListView availableDevicesListInDeviceSelectionFlyoutContent { get; set; }
-	   void App_Suspending(
-		 Object sender,
+	   void App_Suspending(Object sender,
 		 Windows.ApplicationModel.SuspendingEventArgs e)
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();

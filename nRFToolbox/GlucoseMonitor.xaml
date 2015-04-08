@@ -1,0 +1,110 @@
+﻿<Page
+    x:Class="nRFToolbox.GlucoseMonitor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uc="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="GlucoseMeasurementList">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="0,0,0,0"/>
+                <StackPanel Margin="10,0,0,10" Grid.Column="0">
+                    <TextBlock
+                                    Text="{Binding BaseTime}"
+                                    TextWrapping="WrapWholeWords"
+                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"
+                                    Foreground="Black"
+                                    Margin="0,0,19,0"/>
+                    <TextBlock
+                                    Text="{Binding Type}"
+                                    TextWrapping="WrapWholeWords"
+                                    CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                    Style="{ThemeResource ListViewItemContentTextBlockStyle}"
+                                    Foreground="Black"
+                                    Margin="0,0,19,0"/>
+                    <TextBlock
+                                    Text="{Binding Location}"
+                                    TextWrapping="WrapWholeWords"
+                                    Style="{StaticResource ListViewItemContentTextBlockStyle}"
+                                    Foreground="Black"
+                                    Margin="0,0,19,0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="55,15,0,10">
+                    <TextBlock
+                                    Text="{Binding GlucoseConcentrationMolL}"
+                                    TextWrapping="Wrap"
+                                    Style="{StaticResource InfoPanelLabelTextStyle}"
+                                    Foreground="Black"
+                                    />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="MainPageLayout">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/image/background.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
+        </StackPanel>
+        <Grid x:Name="PageContent" Margin="20,0,0,19" HorizontalAlignment="Left" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="InfoPanel" Margin="0,10,20,0" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Canvas Grid.Row="0" Grid.Column="0" Width="50" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25"  Source="Assets/image/Battery@2x.png"  />
+                    <TextBlock x:Name="BatteryLevel" Foreground="Beige" Text="{Binding BatteryLevel}" FontSize="15" Canvas.Left="9" Canvas.Top="4"/>
+                </Canvas>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="DeviceName" HorizontalAlignment="Left" Margin="100,0,0,0" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelLabelTextStyle}"/>
+            </Grid>
+
+            <Grid x:Name="Readings" Margin="0,10,20,0" Grid.Row="1" MinHeight="300" Width="380" HorizontalAlignment="Center" >
+                <Grid.RowDefinitions> 
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Background="#009ada">
+                    <TextBlock Text="READINGS" Style="{StaticResource AboutTextStyle}" Foreground="White" Width="75" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Margin="300,0,10,0" Background="#009ada">
+                    <TextBlock Text="{Binding Unit}" Style="{StaticResource AboutTextStyle}" Foreground="White" Width="45" />
+                </StackPanel>
+                <Grid Background="#E6E7E8" Margin="0,0,0,0" Grid.Row="1">
+                    <ListView x:Name="GlucoseMeasurement" ItemsSource="{Binding GlucoseMeasurementList}" ItemTemplate="{StaticResource GlucoseMeasurementList}"
+                          ShowsScrollingPlaceholders="False" 
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          ScrollViewer.VerticalScrollMode="Auto"
+                          IsItemClickEnabled="True" 
+                          >
+                    </ListView>
+                </Grid>
+                <Button x:Name="GetFirstRecordButton" Content="First" Background="#009ada" BorderThickness="0,0,0,0" Grid.Row="2" Click="GetFirstRecordClicked" Margin="0,0,0,12"/>
+                <Button x:Name="GetLastRecordButton" Content="Last" Background="#009ada" Grid.Row="2" BorderThickness="0,0,0,0" Click="GetLastRecordClicked" Margin="120,0,0,12" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
