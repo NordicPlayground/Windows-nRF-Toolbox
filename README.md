@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -841,3 +842,6 @@ The documentation of this tool is available here. [nRF-Utility](http://developer
  - Requires Windows Phone 8.1 or newer.
  - Tested on Lumia 930, Lumia 635
 >>>>>>> origin/master
+=======
+
+>>>>>>> b8c69d8d18c8a8dd950190d8fc5c9df2ec4d0761
