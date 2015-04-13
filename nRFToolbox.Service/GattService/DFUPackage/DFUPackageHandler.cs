@@ -33,7 +33,7 @@ namespace Common.Service.DFUPackage
 						return GetBinDatFileTokens(fileDictionary, manifestObject.manifest.bootloader.bin_file, manifestObject.manifest.bootloader.dat_file);
 					case FirmwareTypeEnum.SoftDevice:
 						return GetBinDatFileTokens(fileDictionary, manifestObject.manifest.softdevice.bin_file, manifestObject.manifest.softdevice.dat_file);
-					case FirmwareTypeEnum.MultiFiles:
+					case FirmwareTypeEnum.Softdevice_Bootloader:
 						return GetBinDatFileTokens(fileDictionary, manifestObject.manifest.softdevice_bootloader.bin_file, manifestObject.manifest.softdevice_bootloader.dat_file);
 				}
 			}

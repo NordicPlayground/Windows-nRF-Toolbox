@@ -96,7 +96,7 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="0">
+                    <StackPanel Grid.Row="0" Margin="0,0,0,35">
                         <TextBlock Style="{StaticResource AboutTextStyle}" Text="{Binding Information}"/>
                     </StackPanel>
                     <Grid Grid.Row="1">
@@ -109,13 +109,16 @@
                             <RowDefinition Height = "auto"/>
                             <RowDefinition Height = "auto"/>
                         </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="1" Text="Choose a destination to save downloaded from OneDrive. Or local folder will be used by default." Style="{StaticResource AboutTextStyle}" Margin="0,0,0,20"/>
                         <Button Grid.Row="0" Grid.Column="0" Content="save at" Click="SaveImageAs_Clicked"/>
                         <TextBlock Grid.Row="0" Text="{Binding FavoriteFolderName}" Style="{StaticResource InfoPanelTextSettingStyle}" Margin="120,15,20,0"  />
-                        <TextBlock Grid.Row="1" Text="Choose a destination to save downloaded from OneDrive. Or local folder will be used by default." Style="{StaticResource AboutTextStyle}"/>
-                        <StackPanel x:Name="ImageTypeRadioButton" Grid.Row="2" />
-                        <Button x:Name="SelectFilesButton" Grid.Row="3" Grid.Column="0" Content="browse" Click="SelectFilesButton_Clicked" Visibility="Collapsed"/>
-                        <TextBlock  x:Name="SelectedFiles" Grid.Row="3" Text="{Binding ImageFileNames}" TextWrapping="Wrap" Style="{StaticResource InfoPanelTextSettingStyle}" Margin="120,15,20,0" Visibility="Collapsed"/>
-                        <Button x:Name="UseExampleButton" Grid.Row="4" Grid.Column="0" Content="try example" Click="TryExample_Clicked" BorderBrush="{ThemeResource PhoneAccentBrush}"/>
+
+                        <Button x:Name="SelectFilesButton" Grid.Row="3" Grid.Column="0" Content="browse" Click="SelectFilesButton_Clicked" Visibility="Visible"/>
+                        <TextBlock  x:Name="SelectedFiles" Grid.Row="3" Text="{Binding ImageFileNames}" TextWrapping="Wrap" Style="{StaticResource InfoPanelTextSettingStyle}" Margin="120,15,20,0" Visibility="Visible"/>
+                        <TextBlock Grid.Row="4" Text="Choose a firmware to upload. (The zip file should be packed by using nRF-Utility)" Style="{StaticResource AboutTextStyle}" Margin="0,0,0,20"/>
+                        <Button x:Name="UseExampleButton" Grid.Row="5" Grid.Column="0" Content="try example" Click="TryExample_Clicked" BorderBrush="{ThemeResource PhoneAccentBrush}"/>
+                        <TextBlock Grid.Row="6" Text="This function uses blinky application as an example." Style="{StaticResource AboutTextStyle}" Margin="0,0,0,20"/>
+
                     </Grid>
                     <!--Double line list with text wrapping-->
                 </Grid>

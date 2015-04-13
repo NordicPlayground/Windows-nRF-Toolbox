@@ -197,6 +197,7 @@ namespace nRFToolbox.ViewModels
 		async void deviceFirmwareUpdateService_ServiceChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
 		{
 			IsServiceChanged = true;
+			await Task.Delay(TimeSpan.FromMilliseconds(300)); //do we need this?
 			await UpdateAvailableDevice();
 			DeviceInformationItem newDevice = null;
 			GattDeviceService dfuService;
@@ -296,7 +297,7 @@ namespace nRFToolbox.ViewModels
 					try
 					{
 						var type = DFUPackageHandler.GetFirmwareType(SelectedDeviceFirmwareTypeName);
-						if (type.Equals(FirmwareTypeEnum.MultiFiles))
+						if (type.Equals(FirmwareTypeEnum.Softdevice_Bootloader))
 						{
 							var imageFile = ChosenFiles.Find(x => x.Name == dfuSettingViewModel.manifestObject.manifest.softdevice_bootloader.bin_file);
 							var dataFile = ChosenFiles.Find(x => x.Name == dfuSettingViewModel.manifestObject.manifest.softdevice_bootloader.dat_file);
@@ -340,7 +341,7 @@ namespace nRFToolbox.ViewModels
 		{
 			timer = new SmartDispatcherTimer();
 			timer.IsReentrant = false;
-			timer.Interval = TimeSpan.FromSeconds(13);
+			timer.Interval = TimeSpan.FromSeconds(20);
 			timer.TickTask = async () =>
 			{
 				await CheckServiceChanged();

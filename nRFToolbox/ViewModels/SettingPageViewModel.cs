@@ -215,7 +215,7 @@ namespace nRFToolbox.ViewModels
 			}
 		}
 
-		private string imageFileNames;
+		private string imageFileNames = NOT_CHOOSEN;
 		public string ImageFileNames
 		{
 			get
@@ -248,7 +248,7 @@ namespace nRFToolbox.ViewModels
 
 		public DeviceFirmwareUpdateSettingPageViewModel() 
 		{
-			Information = "Device Firmware Update(DFU) allows you to update firmware through BLE.";
+			Information = "The Device Firmware Update (DFU) profile allows you to update the application, bootloader and/or the Soft Device image over-the-air (OTA).";
 		}
 
 		public string GetShortFileName() 
@@ -276,10 +276,10 @@ namespace nRFToolbox.ViewModels
 		{
 			SelectedDeviceFirmwareTypeName = FirmwareTypeEnum.Application.ToString();
 			var examples = await GattServiceHelper.GetDFUExampleApplication();
-			await SaveFile(examples, FirmwareTypeEnum.Application);
+			await SaveFile(examples);
 		}
 
-		public async Task<bool> SaveFile(StorageFile file, FirmwareTypeEnum selectedType) 
+		public async Task<bool> SaveFile(StorageFile file) 
 		{
 			try 
 			{
@@ -289,6 +289,14 @@ namespace nRFToolbox.ViewModels
 				{
 					var manifest = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(manifesToken);
 					manifestObject = await DFUPackageHandler.GetManifestObject(manifest);
+					if (manifestObject.manifest.application != null)
+						SelectedDeviceFirmwareTypeName = manifestObject.manifest.application.GetType().Name;
+					else if (manifestObject.manifest.bootloader != null)
+						SelectedDeviceFirmwareTypeName = manifestObject.manifest.bootloader.GetType().Name;
+					else if (manifestObject.manifest.softdevice != null)
+						SelectedDeviceFirmwareTypeName = manifestObject.manifest.softdevice.GetType().Name;
+					else if (manifestObject.manifest.softdevice_bootloader != null)
+						SelectedDeviceFirmwareTypeName = manifestObject.manifest.softdevice_bootloader.GetType().Name;
 					unZippedFiles.Remove("manifest.json");
 					this.FileToken = unZippedFiles;
 				}

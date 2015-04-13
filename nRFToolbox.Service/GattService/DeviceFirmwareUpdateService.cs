@@ -102,15 +102,18 @@ namespace Common.Service.GattService
 				this.deviceFirmwareUpdateServiceOnApplicationMode = deviceFirmwareUpdateService;
 				this.genericAttributeOnApplicationModel = genericAttribute;
 				this.firmwareType = firmwareType;
-				if (firmwareType.Equals(FirmwareTypeEnum.MultiFiles))
+				initialPacket = await File.ReadToBuffer(dataFile);
+				firmwareImage = await File.ReadToBytes(imageFile);
+				if (firmwareType.Equals(FirmwareTypeEnum.Softdevice_Bootloader))
 				{
 					if (softDeviceSize == 0 || bootLoaderSize == 0)
 						throw new ArgumentException();
 					initialSizes = GetSizeOfImage(softDeviceSize, bootLoaderSize);
 				}
-				initialPacket = await File.ReadToBuffer(dataFile);
-				firmwareImage = await File.ReadToBytes(imageFile);
-				initialSizes = GetSizeOfImage();
+				else
+				{
+					initialSizes = GetSizeOfImage();
+				}		
 				return IsServiceInitialized = true;
 			}
 			else
@@ -141,12 +144,14 @@ namespace Common.Service.GattService
 			}
 		}
 
-		async void serviceChange_ValueChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
+		void serviceChange_ValueChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
 		{
-			IsServiceChanged = true;
-			await Task.Delay(TimeSpan.FromMilliseconds(300)); //do we need this?
-			if (ServiceChanged != null)
-				ServiceChanged(sender, args); // notify the client side to do service rediscovering
+			if(!IsServiceChanged)
+			{
+				IsServiceChanged = true;
+				if (ServiceChanged != null)
+					ServiceChanged(sender, args); // notify the client side to do service rediscovering
+			}
 		}
 
 
@@ -195,7 +200,7 @@ namespace Common.Service.GattService
 				case FirmwareTypeEnum.Application:
 					sizes[2] = firmwareImage.Length;
 					break;
-				case FirmwareTypeEnum.MultiFiles:
+				case FirmwareTypeEnum.Softdevice_Bootloader:
 					if (softDevice == 0 || bootLoader == 0)
 						throw new ArgumentException();
 					sizes[0] = softDevice;

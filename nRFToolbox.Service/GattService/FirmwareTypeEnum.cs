@@ -26,7 +26,7 @@ namespace Common.Service.GattService
 	{
 		SoftDevice = 0x01,
 		BootLoader = 0x02,
-		MultiFiles = 0x03,
+		Softdevice_Bootloader = 0x03,
 		Application = 0x04
 	}
 }

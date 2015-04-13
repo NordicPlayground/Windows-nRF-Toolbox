@@ -54,7 +54,7 @@ namespace nRFToolbox
 		public Settings()
 		{
 			this.InitializeComponent();
-			AddDFUImageTypeRadioButtons();
+			//AddDFUImageTypeRadioButtons();
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
 			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
@@ -204,26 +204,26 @@ namespace nRFToolbox
 				var cachedFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(DeviceFirmwareUpdateSettingPageViewModel.FavoriteFolderToken, AccessCacheOptions.None) as StorageFolder;
 				dfuSettingViewModel.FavoriteFolder = cachedFolder;
 			}
-			if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.Application.ToString())
-			{
-				ApplicationTypeRadioButton.IsChecked = true;
-				SetOnDeviceFirmwareButtonVisibility();
-			}
-			else if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.BootLoader.ToString())
-			{
-				BootloaderTypeRadioButton.IsChecked = true;
-				SetOnDeviceFirmwareButtonVisibility();
-			}
-			else if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.SoftDevice.ToString())
-			{
-				SoftDeviceTypeRadioButton.IsChecked = true;
-				SetOnDeviceFirmwareButtonVisibility();
-			}
-			else if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.MultiFiles.ToString())
-			{
-				SoftDevice_BootLoaderTypeRadioButton.IsChecked = true;
-				SetOnDeviceFirmwareButtonVisibility();
-			}
+			//if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.Application.ToString())
+			//{
+			//	ApplicationTypeRadioButton.IsChecked = true;
+			//	SetOnDeviceFirmwareButtonVisibility();
+			//}
+			//else if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.BootLoader.ToString())
+			//{
+			//	BootloaderTypeRadioButton.IsChecked = true;
+			//	SetOnDeviceFirmwareButtonVisibility();
+			//}
+			//else if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.SoftDevice.ToString())
+			//{
+			//	SoftDeviceTypeRadioButton.IsChecked = true;
+			//	SetOnDeviceFirmwareButtonVisibility();
+			//}
+			//else if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName == FirmwareTypeEnum.MultiFiles.ToString())
+			//{
+			//	SoftDevice_BootLoaderTypeRadioButton.IsChecked = true;
+			//	SetOnDeviceFirmwareButtonVisibility();
+			//}
 			if (dfuSettingViewModel.FileToken.Count > 0) 
 			{
 				dfuSettingViewModel.ImageFileNames = dfuSettingViewModel.GetShortFileName();
@@ -247,76 +247,76 @@ namespace nRFToolbox
 		{
 		   foreach(StorageFile pickedFile in args.Files)
 			{
-				FirmwareTypeEnum type;
-				if (Enum.TryParse(dfuSettingViewModel.SelectedDeviceFirmwareTypeName, out type))
-					await dfuSettingViewModel.SaveFile(pickedFile, type);
+				//FirmwareTypeEnum type;
+				//if (Enum.TryParse(dfuSettingViewModel.SelectedDeviceFirmwareTypeName, out type))
+					await dfuSettingViewModel.SaveFile(pickedFile);
 			}
 			dfuSettingViewModel.ImageFileNames = dfuSettingViewModel.GetShortFileName();
 		}
 
-		private void ImageType_checked(object sender, RoutedEventArgs e)
-		{
-			RadioButton radioButton = sender as RadioButton;
-			var TypeName = radioButton.Content.ToString();
-			if (string.IsNullOrEmpty(dfuSettingViewModel.SelectedDeviceFirmwareTypeName))
-				SetOnDeviceFirmwareButtonVisibility();
-			if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName != TypeName) 
-			{
-				dfuSettingViewModel.ClearDFUSettings();
-				dfuSettingViewModel.SelectedDeviceFirmwareTypeName = TypeName;
-			}
-			else 
-			{
+		//private void ImageType_checked(object sender, RoutedEventArgs e)
+		//{
+		//	RadioButton radioButton = sender as RadioButton;
+		//	var TypeName = radioButton.Content.ToString();
+		//	if (string.IsNullOrEmpty(dfuSettingViewModel.SelectedDeviceFirmwareTypeName))
+		//		SetOnDeviceFirmwareButtonVisibility();
+		//	if (dfuSettingViewModel.SelectedDeviceFirmwareTypeName != TypeName) 
+		//	{
+		//		dfuSettingViewModel.ClearDFUSettings();
+		//		dfuSettingViewModel.SelectedDeviceFirmwareTypeName = TypeName;
+		//	}
+		//	else 
+		//	{
 			
-			}
-		}
+		//	}
+		//}
 
-		private void SetOnDeviceFirmwareButtonVisibility() 
-		{
-				SelectFilesButton.Visibility = Windows.UI.Xaml.Visibility.Visible;
-				SelectedFiles.Visibility = Windows.UI.Xaml.Visibility.Visible;
-		}
+		//private void SetOnDeviceFirmwareButtonVisibility() 
+		//{
+		//		SelectFilesButton.Visibility = Windows.UI.Xaml.Visibility.Visible;
+		//		SelectedFiles.Visibility = Windows.UI.Xaml.Visibility.Visible;
+		//}
 
-		private void AddDFUImageTypeRadioButtons() 
-		{
-			ApplicationTypeRadioButton = new RadioButton();
-			ApplicationTypeRadioButton.Content = FirmwareTypeEnum.Application.ToString();
-			ApplicationTypeRadioButton.GroupName = "ImageType";
-			ApplicationTypeRadioButton.Checked += ImageType_checked;
+		//private void AddDFUImageTypeRadioButtons() 
+		//{
+		//	ApplicationTypeRadioButton = new RadioButton();
+		//	ApplicationTypeRadioButton.Content = FirmwareTypeEnum.Application.ToString();
+		//	ApplicationTypeRadioButton.GroupName = "ImageType";
+		//	ApplicationTypeRadioButton.Checked += ImageType_checked;
 
-			BootloaderTypeRadioButton = new RadioButton();
-			BootloaderTypeRadioButton.Content = FirmwareTypeEnum.BootLoader.ToString();
-			BootloaderTypeRadioButton.GroupName = "ImageType";
-			BootloaderTypeRadioButton.Checked += ImageType_checked;
+		//	BootloaderTypeRadioButton = new RadioButton();
+		//	BootloaderTypeRadioButton.Content = FirmwareTypeEnum.BootLoader.ToString();
+		//	BootloaderTypeRadioButton.GroupName = "ImageType";
+		//	BootloaderTypeRadioButton.Checked += ImageType_checked;
 
-			SoftDeviceTypeRadioButton = new RadioButton();
-			SoftDeviceTypeRadioButton.Content = FirmwareTypeEnum.SoftDevice.ToString();
-			SoftDeviceTypeRadioButton.GroupName = "ImageType";
-			SoftDeviceTypeRadioButton.Checked += ImageType_checked;
+		//	SoftDeviceTypeRadioButton = new RadioButton();
+		//	SoftDeviceTypeRadioButton.Content = FirmwareTypeEnum.SoftDevice.ToString();
+		//	SoftDeviceTypeRadioButton.GroupName = "ImageType";
+		//	SoftDeviceTypeRadioButton.Checked += ImageType_checked;
 
-			SoftDevice_BootLoaderTypeRadioButton = new RadioButton();
-			SoftDevice_BootLoaderTypeRadioButton.Content = FirmwareTypeEnum.MultiFiles.ToString();
-			SoftDevice_BootLoaderTypeRadioButton.GroupName = "ImageType";
-			SoftDevice_BootLoaderTypeRadioButton.Checked += ImageType_checked;
+		//	SoftDevice_BootLoaderTypeRadioButton = new RadioButton();
+		//	SoftDevice_BootLoaderTypeRadioButton.Content = FirmwareTypeEnum.MultiFiles.ToString();
+		//	SoftDevice_BootLoaderTypeRadioButton.GroupName = "ImageType";
+		//	SoftDevice_BootLoaderTypeRadioButton.Checked += ImageType_checked;
 
-			this.ImageTypeRadioButton.Children.Add(ApplicationTypeRadioButton);
-			this.ImageTypeRadioButton.Children.Add(BootloaderTypeRadioButton);
-			this.ImageTypeRadioButton.Children.Add(SoftDeviceTypeRadioButton);
-			this.ImageTypeRadioButton.Children.Add(SoftDevice_BootLoaderTypeRadioButton);
-		}
+		//	this.ImageTypeRadioButton.Children.Add(ApplicationTypeRadioButton);
+		//	this.ImageTypeRadioButton.Children.Add(BootloaderTypeRadioButton);
+		//	this.ImageTypeRadioButton.Children.Add(SoftDeviceTypeRadioButton);
+		//	this.ImageTypeRadioButton.Children.Add(SoftDevice_BootLoaderTypeRadioButton);
+		//}
 
-		private void UncheckAllRadioButton() 
-		{
-			ApplicationTypeRadioButton.IsChecked = false;
-			BootloaderTypeRadioButton.IsChecked = false;
-			SoftDeviceTypeRadioButton.IsChecked = false;
-		}
+		//private void UncheckAllRadioButton() 
+		//{
+		//	ApplicationTypeRadioButton.IsChecked = false;
+		//	BootloaderTypeRadioButton.IsChecked = false;
+		//	SoftDeviceTypeRadioButton.IsChecked = false;
+		//}
 
 		private async void TryExample_Clicked(object sender, RoutedEventArgs e)
 		{
 			//dfuSettingViewModel.ClearDFUSettings();
-			SetOnDeviceFirmwareButtonVisibility();
-			ApplicationTypeRadioButton.IsChecked = true;
+			//SetOnDeviceFirmwareButtonVisibility();
+			//ApplicationTypeRadioButton.IsChecked = true;
 			await dfuSettingViewModel.SetExampleApplication();
 			dfuSettingViewModel.ImageFileNames = dfuSettingViewModel.GetShortFileName();
 		}
@@ -325,19 +325,19 @@ namespace nRFToolbox
 		{
 			FileOpenPicker folderPicker = new FileOpenPicker();
 			folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
-			folderPicker.FileTypeFilter.Add(DeviceFirmwareUpdateSettingPageViewModel.DataFile_dat);
-			folderPicker.FileTypeFilter.Add(DeviceFirmwareUpdateSettingPageViewModel.ImageFile_Bin);
+			//folderPicker.FileTypeFilter.Add(DeviceFirmwareUpdateSettingPageViewModel.DataFile_dat);
+			//folderPicker.FileTypeFilter.Add(DeviceFirmwareUpdateSettingPageViewModel.ImageFile_Bin);
 			folderPicker.FileTypeFilter.Add(DeviceFirmwareUpdateSettingPageViewModel.ZipFile);
 			folderPicker.PickMultipleFilesAndContinue();
 		}
 
-		public RadioButton ApplicationTypeRadioButton { get; set; }
+		//public RadioButton ApplicationTypeRadioButton { get; set; }
 
-		public RadioButton BootloaderTypeRadioButton { get; set; }
+		//public RadioButton BootloaderTypeRadioButton { get; set; }
 
-		public RadioButton SoftDeviceTypeRadioButton { get; set; }
+		//public RadioButton SoftDeviceTypeRadioButton { get; set; }
 
-		public RadioButton SoftDevice_BootLoaderTypeRadioButton { get; set; }
+		//public RadioButton SoftDevice_BootLoaderTypeRadioButton { get; set; }
 
 		private DeviceFirmwareUpdateSettingPageViewModel dfuSettingViewModel { get; set; }
 		#endregion
