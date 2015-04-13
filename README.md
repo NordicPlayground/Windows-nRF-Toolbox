@@ -6,10 +6,11 @@ It contains applications demonstrating Bluetooth Smart profiles:
 * **Heart Rate Monitor**, 
 * **Proximity Monitor**,
 * **Nordic UART Monitor**,
-* **Glucose Monitor**.
+* **Glucose Monitor**,
+* **Device Firmware Update**.(Only on github)
 
-## Device Firmware Update
-The Device Firmware Update (DFU) profile allows you to update the application, bootloader and/or the Soft Device image over-the-air (OTA). It is compatible with Nordic Semiconductor nRF51822, nRF51422 devices that have the S110 SoftDevice and bootloader enabled. 
+## Device Firmware Update (DFU)
+The DFU profile allows you to update the application, bootloader and/or the Soft Device image over-the-air (OTA). It is compatible with Nordic Semiconductor nRF51822, nRF51422 devices that have the S110 SoftDevice and bootloader enabled. 
 
 The DFU has the following features:
 * **Scans for devices that have DFU service**, 
