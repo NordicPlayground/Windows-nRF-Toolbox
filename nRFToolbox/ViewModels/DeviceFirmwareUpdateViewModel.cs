@@ -393,10 +393,11 @@ namespace nRFToolbox.ViewModels
 				{
 					foreach (var device in result)
 					{
-						var ble = await BluetoothLEDevice.FromIdAsync(device.Id) as BluetoothLEDevice;
-						await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+						await dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
 						{
-							DeviceSelectionViewModel.AddBLEDevice(ble);
+							GattDeviceService ble = await GattDeviceService.FromIdAsync(device.Id) as GattDeviceService;
+							var wanted = ble.Device;
+							//DeviceSelectionViewModel.AddBLEDevice(ble);
 						});
 					}
 				}
@@ -412,7 +413,7 @@ namespace nRFToolbox.ViewModels
 				}
 				return true;
 			}
-			catch(Exception)
+			catch(Exception e)
 			{
 				return false;
 			}

@@ -1,0 +1,106 @@
+﻿<Page
+    x:Class="nRFToolbox.BloodPressureMonitor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uc="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="MainPageLayout">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/image/background.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>   
+        <StackPanel Grid.Row="0">
+            <uc:ToolboxHeaderLayout x:Name="PageHeader"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Canvas  Grid.Column="0" Width="50" Height="25" Margin="19,5,0,0" >
+                <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25"  Source="Assets/image/Battery@2x.png"  />
+                <TextBlock x:Name="BatteryLevel" Foreground="Beige" Text="{Binding BatteryLevel}" FontSize="15" Canvas.Left="9" Canvas.Top="4"/>
+            </Canvas>
+            <TextBlock Grid.Column="1" x:Name="DeviceName" Margin="80,0,0,0" TextWrapping="Wrap" Text="{Binding DeviceName}" Style="{StaticResource InfoPanelLabelTextStyle}"/>
+        </Grid>
+           <Grid x:Name="PageContent" Margin="19,0,0,20" HorizontalAlignment="Center" MinWidth="380" Grid.Row="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="BloodPressure" Margin="0,10,20,20" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Background="#009ada">
+                    <TextBlock Text="BLOOD PRESSURE" Style="{StaticResource AboutTextStyle}" Foreground="White" Width="130" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <Grid Background="#E6E7E8" Margin="0,0,0,0" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="auto"/>
+                        <ColumnDefinition Width ="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="SYS" Style="{StaticResource  InfoPanelTextStyle}" Margin="20,10,25,0"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Systolic}" Style="{StaticResource InfoPanelLabelTextStyle}" Margin="60,3,25,0"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding BloodPressureUnit}" Style="{StaticResource InfoPanelTextStyle}" Margin="120,15,25,0"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="DIA" Style="{StaticResource InfoPanelTextStyle}" Margin="20,10,25,0"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Diastolic}" Style="{StaticResource InfoPanelLabelTextStyle}" Margin="60,3,25,0"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding BloodPressureUnit}" Style="{StaticResource InfoPanelTextStyle}" Margin="120,15,25,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="MEAN AP" Style="{StaticResource InfoPanelTextStyle}" Margin="20,10,25,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding MeanArterialPressure}" Style="{StaticResource InfoPanelLabelTextStyle}" Margin="60,3,25,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding BloodPressureUnit}" Style="{StaticResource InfoPanelTextStyle}" Margin="120,15,25,0"/>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="PulseRate" Margin="0,10,20,20" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Background="#009ada">
+                    <TextBlock Text="PULSE" Style="{StaticResource AboutTextStyle}" Foreground="White" Width="50" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid Background="#E6E7E8" Margin="0,0,0,0" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="auto"/>
+                        <ColumnDefinition Width ="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="PULSE" Style="{StaticResource InfoPanelTextStyle}" Margin="20,10,25,0"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Pulse}" Style="{StaticResource InfoPanelLabelTextStyle}" Margin="85,3,25,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PulseUnit}" Style="{StaticResource InfoPanelTextStyle}" Margin="123,15,25,0"/>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="TimeAndDate" Margin="0,10,20,0" Grid.Row="3" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Background="#009ada">
+                    <TextBlock Text="Time and Date" Style="{StaticResource AboutTextStyle}" Foreground="White" Width="110" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <Grid Background="#E6E7E8" Margin="0,0,0,0" Grid.Row="1">
+                    <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding TimeStamp}" Style="{StaticResource InfoPanelLabelTextStyle}" Margin="0,0,0,0"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

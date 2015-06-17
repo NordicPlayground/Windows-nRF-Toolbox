@@ -117,17 +117,17 @@ namespace nRFToolbox.ViewModels
 			item.PageId = ToolboxIdentifications.PageId.GLUCOSE;
 			_Collection.Add(item);
 
-			//item = new ProfileViewModel();
-			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.BLOOD_PRESSURE;
-			//item.PageId = ToolboxIdentifications.PageId.BLOOD_PRESSURE;
-			//item.SetLocalImage(_baseUri, "ic_bpm_feature.png");
-			//_Collection.Add(item);
+			item = new ProfileViewModel();
+			item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.BLOOD_PRESSURE;
+			item.PageId = ToolboxIdentifications.PageId.BLOOD_PRESSURE;
+			item.SetLocalImage(_baseUri, "ic_bpm_feature.png");
+			_Collection.Add(item);
 
 			//item = new ProfileViewModel();
 			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.CYCLING_SPEED_AND_CADENCE;
-			//item.PageId = ToolboxIdentifications.PageId.CYCLING_SPEED_AND_CADENCE;
+			//item.ButtonId = ToolboxIdentifications.ButtonId.CYCLING_SPEED_AND_CADENCE;
 			//item.SetLocalImage(_baseUri, "ic_csc_feature.png");
-			//_Collection.Add(item);
+			//allControlButtons.Add(item);
 
 			item = new ProfileViewModel();
 			item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.DEVICE_FIRMWARE_UPDATE;
@@ -137,9 +137,9 @@ namespace nRFToolbox.ViewModels
 
 			//item = new ProfileViewModel();
 			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.HEALTH_THERMOMETER;
-			//item.PageId = ToolboxIdentifications.PageId.HEALTH_THERMOMETER;
+			//item.ButtonId = ToolboxIdentifications.ButtonId.HEALTH_THERMOMETER;
 			//item.SetLocalImage(_baseUri, "ic_hts_feature.png");
-			//_Collection.Add(item);
+			//allControlButtons.Add(item);
 
 			item = new ProfileViewModel();
 			item.Title = ToolboxIdentifications.ToolboxProfilesShortNames.PROXIMITY;
@@ -149,9 +149,9 @@ namespace nRFToolbox.ViewModels
 
 			//item = new ProfileViewModel();
 			//item.Dialog = ToolboxIdentifications.ToolboxProfilesShortNames.RUNNING_SPEED_AND_CADENCE;
-			//item.PageId = ToolboxIdentifications.PageId.RUNNING_SPEED_AND_CADENCE;
+			//item.ButtonId = ToolboxIdentifications.ButtonId.RUNNING_SPEED_AND_CADENCE;
 			//item.SetLocalImage(_baseUri, "ic_rsc_feature.png");
-			//_Collection.Add(item);
+			//allControlButtons.Add(item);
 
 
 			item = new ProfileViewModel();

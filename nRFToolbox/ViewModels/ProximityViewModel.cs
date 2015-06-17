@@ -39,7 +39,7 @@ namespace nRFToolbox.ViewModels
 {
 	public class ProximityViewModel : ViewModelBase
 	{
-		private string batteryLevel = DEFAULT_BATTERYVALUE;
+		private string batteryLevel = DEFAULT_NOT_AVAILABLE;
 		public string BatteryLevel
 		{
 			get 
@@ -273,7 +273,7 @@ namespace nRFToolbox.ViewModels
 		public void StopServices() 
 		{
 			this.BatteryService.ValueChangeCompleted -= BatteryService_ValueChangeCompleted;
-			this.BatteryLevel = DEFAULT_BATTERYVALUE;
+			this.BatteryLevel = DEFAULT_NOT_AVAILABLE;
 			BatteryService.Stop();
 			LinkLossService.Stop();
 			ImmediateAlertService.Stop();

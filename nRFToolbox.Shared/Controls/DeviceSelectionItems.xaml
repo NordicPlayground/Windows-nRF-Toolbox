@@ -18,7 +18,7 @@
                 <TextBlock
                                     Text="{Binding CompleteDeviceName}"
                                     TextWrapping="Wrap"
-                                    Style="{StaticResource ListViewItemSubheaderTextBlockStyle}"
+                                    Style="{StaticResource  ListViewItemContentTextBlockStyle}"
                                     Margin="0,0,19,0"/>
                 <!--<TextBlock
                                     Text="{Binding DeviceAddress}"

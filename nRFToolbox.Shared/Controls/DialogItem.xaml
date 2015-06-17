@@ -9,23 +9,24 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid Background="{Binding MessageBackground}" MaxWidth="350" Margin="{Binding MessageMargin}">
-		<Grid.RowDefinitions>
+    <Grid Background="{Binding MessageBackground}" Margin="9,0,0,0" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-            <StackPanel Margin="9,0,9,0" Grid.Row="0">
-                    <TextBlock
-				     Text="{Binding Message}"
-				     TextWrapping="Wrap" 
-                     HorizontalAlignment="Left"
-				     Style="{StaticResource MessageDialogContentStyle}"/>
-                    
-                    <TextBlock
-                	Text="{Binding TimeStamp}"
-                	TextWrapping="Wrap"
-                        Margin="85,5,0,0"
-                        HorizontalAlignment="Right"
-                	Style="{StaticResource MessageDialogContentStyle}" Opacity="0.7" FontSize="12"/>
-            </StackPanel>
+        <TextBlock
+                Grid.Row="0"
+                Text="{Binding TimeStamp}"
+                TextWrapping="Wrap"
+                Style="{StaticResource ListViewItemContentTextBlockStyle}"
+                Foreground="Black"
+            />
+        <TextBlock
+                Grid.Row="0"
+                Margin="100,0,0,0"
+				Text="{Binding Message}"
+				TextWrapping="Wrap" 
+				Style="{StaticResource ListViewItemContentTextBlockStyle}"
+                Foreground="{Binding TextForeground}"
+            />
     </Grid>
 </UserControl>

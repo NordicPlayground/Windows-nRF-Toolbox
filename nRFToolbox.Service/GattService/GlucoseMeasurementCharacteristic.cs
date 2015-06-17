@@ -60,7 +60,7 @@ namespace Common.Service.GattService
 
 			byte[] baseTime = new byte[bluetoothDataTimeLength];
 			Array.Copy(data, currentOffset, baseTime, 0, bluetoothDataTimeLength);
-			glucoseMeasureValue.BaseTime = glucoseMeasureValue.ToDateTime(baseTime);
+			glucoseMeasureValue.BaseTime = File.ToDateTime(baseTime);
 			currentOffset += 7;
 
 			if(isTimeOffsetPresent)
@@ -81,7 +81,7 @@ namespace Common.Service.GattService
 			{
 				byte[] GlucoseConcentrationValueMolL = new byte[SFLOAT];
 				Array.Copy(data, currentOffset, GlucoseConcentrationValueMolL, 0, SFLOAT);
-				var value = glucoseMeasureValue.ToSFloat(GlucoseConcentrationValueMolL);
+				var value = File.ToSFloat(GlucoseConcentrationValueMolL);
 				glucoseMeasureValue.GlucoseConcentrationMolL = value;
 				currentOffset += SFLOAT;
 			}
@@ -147,66 +147,6 @@ namespace Common.Service.GattService
 			IsTimeFault = (statusAnnunciation & 0x0800) != 0;
 		}
 
-		public float ToSFloat(byte[] value)
-		{
-			if (value.Length != 2)
-				throw new ArgumentException();
-			byte b0 = value[0];
-			byte b1 = value[1];
-
-			///int mantisssa
-			var mantissa = unsignedToSigned(ToInt(b0) + ((ToInt(b1) & 0x0F) << 8), 12);
-		   var exponent = unsignedToSigned(ToInt(b1) >> 4, 4);
-
-			return (float)(mantissa * Math.Pow(10, exponent));
-
-		} 
-
-		public int ToInt(byte value)
-		{
-			return value & 0xFF;
-		}
-
-		private int unsignedToSigned(int unsigned, int size) 
-		{
-			if ((unsigned & (1 << size-1)) != 0) 
-         {
-				unsigned = -1 * ((1 << size-1) - (unsigned & ((1 << size-1) - 1)));
-			}        
-			return unsigned;
-		}
-
-		public DateTime? ToDateTime(byte[] baseTime) 
-		{
-			if (baseTime == null && baseTime.Length != 7)
-				throw new ArgumentException();
-			int UINT16 = 2;
-			int UINT8 = 1;
-			int year;
-			int month;
-			int day;
-			int hour;
-			int minute;
-			int second;
-			int currentOffset = 0;
-			DateTime? time = null;
-			year = (ushort)((baseTime[currentOffset + 1] << 8) + baseTime[currentOffset]);
-			currentOffset += UINT16;
-			month = (byte)baseTime[currentOffset];
-			currentOffset += UINT8;
-			day = (byte)baseTime[currentOffset];
-			currentOffset += UINT8;
-			hour = (byte)baseTime[currentOffset];
-			currentOffset += UINT8;
-			minute = (byte)baseTime[currentOffset];
-			currentOffset += UINT8;
-			second = (byte)baseTime[currentOffset];
-			if (!IsTimeValid(year, month, day, hour, minute, second))
-				return time;
-			time = new DateTime(year, month, day, hour, minute, second);
-			return time;
-		}
-
 		public byte GetType(byte typeAndLocation) 
 		{
 			var type = (byte)(typeAndLocation & 0x0F);
@@ -265,23 +205,6 @@ namespace Common.Service.GattService
 				default:
 					throw new ArgumentException();
 			}
-		}
-
-		public bool IsTimeValid(int year, int month, int day, int hour, int minute, int second) 
-		{
-			bool isValid = false;
-			if ((1582 >= year || year >= 9999) && year != 0)
-				return isValid;
-			if (0 >= month || month >= 12)
-				return isValid;
-			if (0 >= day || day >= 31)
-				return isValid;
-			if (0 >= hour || hour >= 23)
-				return isValid;
-			if (0 >= minute || minute >= 59)
-				return isValid;
-			isValid = true;
-			return isValid;
 		}
 	}
 

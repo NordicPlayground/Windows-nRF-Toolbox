@@ -129,7 +129,7 @@ namespace Common.Service.GattService
 				var result = await serviceChangeOnApplicationModel.ReadClientCharacteristicConfigurationDescriptorAsync();
 				if (result != null && result.ClientCharacteristicConfigurationDescriptor != GattClientCharacteristicConfigurationDescriptorValue.Indicate)
 				{
-					serviceChangeOnApplicationModel.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Indicate);
+					//await serviceChangeOnApplicationModel.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Indicate);
 				}
 			}
 		}

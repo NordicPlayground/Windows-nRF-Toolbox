@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="nRFToolbox.ControlButtonTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:nRFToolbox"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<Canvas Height="90" Width="90" Grid.Row="0" Background="{Binding Background}">
+            
+            <StackPanel VerticalAlignment="Bottom" Width="30" Canvas.Top="50">
+                --><!--<TextBlock Text="{Binding Title}"/>--><!--
+            </StackPanel>
+        </Canvas>-->
+        <StackPanel Grid.Row="0" Background="{Binding Background}">
+            <Image Source="{Binding Image}" Height="80" Width="80"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

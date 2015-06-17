@@ -45,6 +45,7 @@ namespace nRFToolbox
 		public const string DISCONNECT = "Disconnect";
 		public const string SEND = "Send";
 		public const string SPEAK = "Speak";
+		public const string EDIT = "Edit";
 		//public const string DEVICE_SELECTION_FLYOUT = "DeviceSelectionFlyout";
 		public const string DEVICE_SELECTION_FLYOUT = "DeviceSelectionFlyout";
 		public const string TOOLBOX_SETTING = "Setting";

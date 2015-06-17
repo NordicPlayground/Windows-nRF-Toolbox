@@ -47,6 +47,9 @@
     <Compile Include="GattService\AlertLevelEnum.cs" />
     <Compile Include="GattService\BatteryLevelCharacteristics.cs" />
     <Compile Include="GattService\BatteryService.cs" />
+    <Compile Include="GattService\BloodPressureFeatureCharacterisctic.cs" />
+    <Compile Include="GattService\BloodPressureMeasurementCharacteristic.cs" />
+    <Compile Include="GattService\BloodPressureService.cs" />
     <Compile Include="GattService\BodySensorLocationCharacteristics.cs" />
     <Compile Include="GattService\DeviceFirmwareUpdateControlPointCharacteristics.cs" />
     <Compile Include="GattService\DeviceFirmwareUpdatePacketCharacteristics.cs" />
@@ -65,6 +68,7 @@
     <Compile Include="GattService\HeartRateService.cs" />
     <Compile Include="GattService\IGattService.cs" />
     <Compile Include="GattService\ImmediateAlertService.cs" />
+    <Compile Include="GattService\IntermediateCuffPressureCharacteristic.cs" />
     <Compile Include="GattService\LinkLossService.cs" />
     <Compile Include="GattService\OperationCode.cs" />
     <Compile Include="GattService\RecordAccessControlPointCharacteristic.cs" />

@@ -45,45 +45,13 @@
                     <TextBlock x:Name="InfoSearching" Text="(Only those devices that provide the required functions will be displayed.)" Style="{StaticResource AboutTextStyle}"/>
                     <TextBlock x:Name="Searching" Text="Searching..." Style="{StaticResource AboutTextStyle}"/>
                     </StackPanel>
-                        <ListView x:Name="AvailableDevicesList" 
+                    <ListView x:Name="AvailableDevicesList" 
                                       ItemsSource="{Binding}"
                                       ItemTemplate="{StaticResource DeviceSelectionItemTemplate}"                                   
                                       Margin="10,10,0,0"
                                       ScrollViewer.VerticalScrollMode="Enabled"
                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                                       >
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ListViewItem">
-                                            <Grid>
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroup x:Name="CommonStates">
-                                                        <VisualState x:Name="Normal"/>
-                                                    </VisualStateGroup>
-                                                    <VisualStateGroup x:Name="SelectionStates">
-                                                        <VisualState x:Name="Unselected">
-                                                            <Storyboard>
-                                                                <ColorAnimation Duration="0" Storyboard.TargetName="myback" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent"/>
-                                                            </Storyboard>
-                                                        </VisualState>
-                                                        <VisualState x:Name="SelectedUnfocused">
-                                                            <Storyboard>
-                                                                <ColorAnimation Duration="0" Storyboard.TargetName="myback" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1BA1E2"/>
-                                                            </Storyboard>
-                                                        </VisualState>
-                                                    </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
-                                                <Border x:Name="myback" Background="Transparent">
-                                                    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                                                </Border>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ListView.ItemContainerStyle>
                     </ListView>
                 </StackPanel>
             </Grid>

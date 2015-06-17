@@ -29,7 +29,6 @@ using Common.Utility;
 
 namespace Common.Service.GattService
 {
-#if WINDOWS_PHONE_APP
 	public interface ILinkLossService : IGattService
 	{
 		//Key format is PageName,DeviceID
@@ -146,5 +145,4 @@ namespace Common.Service.GattService
 
 		private GattDeviceService linkLossDeviceService { get; set; }
 	}
-#endif
 }

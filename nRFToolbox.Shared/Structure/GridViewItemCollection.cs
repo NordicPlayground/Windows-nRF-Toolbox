@@ -38,5 +38,10 @@ namespace nRFToolbox.UI
 			{
 				itemCollection.Add(item);
 			}
+
+			public void Clear() 
+			{
+				itemCollection.Clear();
+			}
 		}
 }

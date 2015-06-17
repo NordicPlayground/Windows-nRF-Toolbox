@@ -21,9 +21,11 @@
             <AppBarButton x:Name="Send" Label="Send" Icon="Send" Visibility="Collapsed"/>
             <AppBarButton x:Name="Speak" Label="Speak" Icon="Microphone" Visibility="Collapsed"/>
             <AppBarButton x:Name="Disconnect" Label="Stop" Icon="Stop" Visibility="Collapsed"/>
-            <AppBarButton x:Name="ScanDevices" Label="Scan" Icon="Refresh" Visibility="Collapsed" Flyout="{Binding}"/>
+            <AppBarButton x:Name="ScanDevices" Label="Scan" Icon="List" Visibility="Collapsed" Flyout="{Binding}"/>
+            <AppBarButton x:Name="Edit" Label="Edit" Icon="Edit" Visibility="Collapsed"/>
+
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="Setting" Label="Settings"/>
+                <AppBarButton x:Name="Setting" Label="Settings" Icon="Dislike"/>
                 <AppBarButton x:Name="About" Label="About" Visibility="Collapsed"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>

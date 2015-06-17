@@ -244,10 +244,10 @@ namespace nRFToolbox.ViewModels
 		#region popup messageType
 		public string BluetoothIsOffMessageTitle = "Can't scan devices";
 		public string BluetoothIsOffMessageContent = "Bluetooth is turned off";
-		public string NoImageMessageTitle = "No image selected";
-		public string NoImageMessageContent = "Select a image to send.";
-		public string DFUSendingCompleteTitle = " " + "has been updated successfully!"; //Select device name should be add in front.
-		public string DFUSendingInfoContent = "FileName and bytes are transfered";
+		//public string NoImageMessageTitle = "No image selected";
+		//public string NoImageMessageContent = "Select a image to send.";
+		//public string DFUSendingCompleteTitle = " " + "has been updated successfully!"; //Select device name should be add in front.
+		//public string DFUSendingInfoContent = "FileName and bytes are transfered";
 		//public void ShowToastMessage(string content)
 		//{
 		//	var toastNotifier = ToastNotificationManager.CreateToastNotifier();
@@ -315,116 +315,6 @@ namespace nRFToolbox.ViewModels
 		internal void ClearConversation()
 		{
 			this.Dialog.Clear();
-		}
-	}
-
-	public class UartDialogViewModel : ViewModelBase 
-	{
-		private string message = string.Empty;
-		public string Message
-		{
-			get
-			{
-				return this.message;
-			}
-
-			set
-			{
-				if (this.message != value)
-				{
-					this.message = value;
-					this.OnPropertyChanged("Message");
-				}
-			}
-		}
-
-		private string timeStamp = string.Empty;
-		public string TimeStamp
-		{
-			get
-			{
-				return this.timeStamp;
-			}
-
-			set
-			{
-				if (this.timeStamp != value)
-				{
-					this.timeStamp = value;
-					this.OnPropertyChanged("TimeStamp");
-				}
-			}
-		}
-
-		private bool isUserSend;
-		public bool IsUserSend
-		{
-			get
-			{
-				return this.isUserSend;
-			}
-
-			set
-			{
-				if (this.isUserSend != value)
-				{
-					this.isUserSend = value;
-					this.OnPropertyChanged("IsUserSend");
-				}
-			}
-		}
-
-		private string messageBackground;
-		public string MessageBackground
-		{
-			get
-			{
-				return this.messageBackground;
-			}
-
-			set
-			{
-				if (this.messageBackground != value)
-				{
-					this.messageBackground = value;
-					this.OnPropertyChanged("MessageBackground");
-				}
-			}
-		}
-
-		private string messageMargin;
-		public string MessageMargin
-		{
-			get
-			{
-				return this.messageMargin;
-			}
-
-			set
-			{
-				if (this.messageMargin != value)
-				{
-					this.messageMargin = value;
-					this.OnPropertyChanged("MessageMargin");
-				}
-			}
-		}
-
-		public UartDialogViewModel(string message, bool isSendByUser)
-		{
-			this.Message = message;
-			this.IsUserSend = isSendByUser;
-			if(isUserSend)
-			{
-				this.MessageBackground = "#009ada";
-				this.MessageMargin = "150,0,0,0";
-			}
-			else
-			{
-				this.MessageBackground = "#DC582A";
-				this.MessageMargin = "0,0,150,0";
-			}
-			this.TimeStamp = DateTime.Now.TimeOfDay.ToString();
 		}
 	}
 }

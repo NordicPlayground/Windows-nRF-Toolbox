@@ -22,6 +22,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AppBarControl.xaml.cs">
       <DependentUpon>AppBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ControlButtonSelectionFlyoutControl.xaml.cs">
+      <DependentUpon>ControlButtonSelectionFlyoutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ControlButtonTemplate.xaml.cs">
+      <DependentUpon>ControlButtonTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DeviceSelectionFlyoutControl.xaml.cs">
       <DependentUpon>DeviceSelectionFlyoutControl.xaml</DependentUpon>
     </Compile>
@@ -43,6 +49,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\SmallControlButtonTemplate.xaml.cs">
+      <DependentUpon>SmallControlButtonTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ToolboxHeaderLayout.xaml.cs">
       <DependentUpon>ToolboxHeaderLayout.xaml</DependentUpon>
     </Compile>
@@ -61,6 +70,46 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\image\background_landscape.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\image\Battery.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\image\Battery@2x.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_1.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_1_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_2_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_3.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_3_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_4.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_4_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_5.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_5_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_6.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_6_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_7.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_7_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_8.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_8_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_9.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_9_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_about.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_about_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_down.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_down_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_forward.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_forward_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_left.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_left_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_pause.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_pause_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_play.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_play_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_rewind.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_rewind_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_right.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_right_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_settings.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_settings_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_stop.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_stop_small.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_up.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\image\ControlButton\ic_uart_up_small.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\image\CortanaMicrophone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_bpm_feature.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\image\ic_csc_feature.png" />
@@ -119,6 +168,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ControlButtonSelectionFlyoutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ControlButtonTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\DeviceSelectionFlyoutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\SmallControlButtonTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

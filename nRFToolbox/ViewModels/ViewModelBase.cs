@@ -25,8 +25,10 @@ namespace nRFToolbox.ViewModels
 {
 	public partial class ViewModelBase
 	{
-		public const string DEFAULT_BATTERYVALUE = "n/a";
-		public const string DEFAULT_DEVICE = "DEVICE_NAME";
+		public const string DEFAULT_VALUE = "-";
+		public const string DEFAULT_NOT_AVAILABLE = "n/a";
+		public const string DEFAULT_DEVICE = "Not connected";
+		public const string DISCONNECTED = "Disconnected";
 		async partial void HideStatusBar()
 		{
 			StatusBar statusBar = StatusBar.GetForCurrentView();

@@ -108,7 +108,7 @@ namespace nRFToolbox
 				rootFrame.ContentTransitions = null;
 				rootFrame.Navigated += this.RootFrame_FirstNavigated;
 
-				await RegisterUartVoiceCommand();
+				//await RegisterUartVoiceCommand();
 				// When the navigation stack isn't restored navigate to the first page,
 				// configuring the new page by passing required information as a navigation
 				// parameter

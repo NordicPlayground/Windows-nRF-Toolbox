@@ -42,7 +42,7 @@ namespace nRFToolbox.ViewModels
 		public string PageId = ToolboxIdentifications.PageId.HEART_RATE;
 		public string DeviceAddress { get; set; }
 
-		private string _bodySensorLocation = DEFAULT_BATTERYVALUE;
+		private string _bodySensorLocation = DEFAULT_NOT_AVAILABLE;
 		public string BodySensorLocation 
 		{
 			get 
@@ -73,7 +73,7 @@ namespace nRFToolbox.ViewModels
 			}
 		}
 
-		private string _batteryLevel = DEFAULT_BATTERYVALUE;
+		private string _batteryLevel = DEFAULT_NOT_AVAILABLE;
 		public string BatteryLevel
 		{
 			get
@@ -87,7 +87,7 @@ namespace nRFToolbox.ViewModels
 			}
 		}
 
-		private string _beatPerMinute = DEFAULT_BATTERYVALUE;
+		private string _beatPerMinute = DEFAULT_NOT_AVAILABLE;
 		public string BeatPerMinute 
 		{ 
 			get

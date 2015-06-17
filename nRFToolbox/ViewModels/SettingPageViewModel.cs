@@ -41,6 +41,7 @@ namespace nRFToolbox.ViewModels
 		public const string DEVICE_FIRMWARE_UPDATE_SETTING = "DeviceFirmwareUpdateSetting";
 		public const string UART_SETTING = "UARTSetting";
 		public const string BGM_SETTING = "GlucoseMonitorSetting";
+		public const string BPM_SETTING = "BloodPressureMonitorSetting";
 		public const string nRFToolboxSetting = "nRFToolboxSetting";
 		ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 		private static SettingPivotViewModel proximityViewModelInstance = null;
@@ -123,6 +124,13 @@ namespace nRFToolbox.ViewModels
 			return proximitySettingPageViewModel;
 		}
 
+		private BloodPressureMonitorSettingPageViewModel CreateBloodPressureMonitorSettingViewModel()
+		{
+			var bloodPressureMonitorSettingPageViewModel = new BloodPressureMonitorSettingPageViewModel();
+			SettingPivotViewModel.GetInstance().SettingPageViewModelDictionary[BPM_SETTING] = bloodPressureMonitorSettingPageViewModel;
+			return bloodPressureMonitorSettingPageViewModel;
+		}
+
 		internal DeviceFirmwareUpdateSettingPageViewModel GetDeviceFirmwareUpdateSettingPageViewModel() 
 		{
 			object viewModel;
@@ -175,6 +183,15 @@ namespace nRFToolbox.ViewModels
 				return viewModel as GlucoseMonitorSettingPageViewModel;
 			else
 				return CreateGlucoseMonitorSettingViewModel();
+		}
+
+		internal BloodPressureMonitorSettingPageViewModel GetBloodPressureMeasurementViewModel()
+		{
+			object viewModel;
+			if (SettingPivotViewModel.GetInstance().SettingPageViewModelDictionary.TryGetValue(BPM_SETTING, out viewModel))
+				return viewModel as BloodPressureMonitorSettingPageViewModel;
+			else
+				return CreateBloodPressureMonitorSettingViewModel();
 		}
 	}
 
@@ -548,6 +565,34 @@ namespace nRFToolbox.ViewModels
 			Information = "The Nordic Universal Asynchronous Receiver/Transmitter (UART) app allows you to remotely control your device by texting commands and, using voice recognition." + " " +
 				"This application demostrates communication between your phone and the device in a conversation panel." + " " +
 				"Commands are send in string format, encoded into UTF-8. The maximum supported length of a command is 20 bytes at a time." + " " +
+				"(Your data will not be stored.)";
+		}
+	}
+
+	public class BloodPressureMonitorSettingPageViewModel : ViewModelBase
+	{
+		private string information;
+		public string Information
+		{
+			get
+			{
+				return information;
+			}
+			set
+			{
+				if (this.information != value)
+				{
+					this.information = value;
+					this.OnPropertyChanged("Description");
+				}
+			}
+		}
+
+		public BloodPressureMonitorSettingPageViewModel()
+		{
+			Information = "Blood pressure profile allows you to connect your device and display receive measurement on your phone." + " " +
+				"This application demostrates systolic, diastolic, mean arterial pressure, and pulse." + " " +
+				"Measurement unit is set on your blood pressure monitor." + " " +
 				"(Your data will not be stored.)";
 		}
 	}

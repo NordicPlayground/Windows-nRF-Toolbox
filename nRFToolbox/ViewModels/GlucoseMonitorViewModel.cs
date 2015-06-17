@@ -52,7 +52,7 @@ namespace nRFToolbox.ViewModels
 			}
 		}
 
-		private string _batteryLevel = DEFAULT_BATTERYVALUE;
+		private string _batteryLevel = DEFAULT_NOT_AVAILABLE;
 		public string BatteryLevel
 		{
 			get
@@ -76,7 +76,7 @@ namespace nRFToolbox.ViewModels
 			set
 			{
 				_unit = value;
-				OnPropertyChanged("Unit");
+				OnPropertyChanged("BloodPressureUnit");
 			}
 		}
 
@@ -128,9 +128,11 @@ namespace nRFToolbox.ViewModels
 				switch(service.Name)
 				{
 					case ToolboxIdentifications.GattServiceNames.GLUCOSE:
+						this.GlucoseServiceHandler = service as IGlocuseService;
 						RegisterGlucoseMeasurementListener(service);
 						break;
 					case ToolboxIdentifications.GattServiceNames.BATTERY:
+						this.BatteryServiceHandler = service as IBatteryService;
 						RegisterBatteryLevelListener(service);
 						break;
 					default:
@@ -141,7 +143,6 @@ namespace nRFToolbox.ViewModels
 
 		private void RegisterBatteryLevelListener(IGattService service)
 		{
-			this.BatteryServiceHandler = service as IBatteryService;
 			this.BatteryServiceHandler.ValueChangeCompleted += BatteryServiceHandler_ValueChangeCompleted;
 		}
 
@@ -155,7 +156,6 @@ namespace nRFToolbox.ViewModels
 
 		private void RegisterGlucoseMeasurementListener(IGattService service)
 		{
-			this.GlucoseServiceHandler = service as IGlocuseService;
 			this.GlucoseServiceHandler.MeasurementNotification += GlucoseServiceHandler_MeasurementNotification; ;
 		}
 
@@ -261,7 +261,7 @@ namespace nRFToolbox.ViewModels
 			{
 				if (!IsServiceStarted)
 					return;
-				this.BatteryLevel = DEFAULT_BATTERYVALUE;
+				this.BatteryLevel = DEFAULT_NOT_AVAILABLE;
 				this.DeviceName = DEFAULT_DEVICE;
 				this.chosenDevice = null;
 				await this.ClearMeasurements();

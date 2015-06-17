@@ -135,10 +135,13 @@ namespace nRFToolbox
 					page = typeof(ProximityMonitor);
 					break;
 				case ToolboxIdentifications.PageId.NORDIC_UART:
-					page = typeof(NordicUART);
+					page = typeof(NordicUartButtonControlPanel);
 					break;
 				case ToolboxIdentifications.PageId.GLUCOSE:
 					page = typeof(GlucoseMonitor);
+					break;
+				case ToolboxIdentifications.PageId.BLOOD_PRESSURE:
+					page = typeof(BloodPressureMonitor);
 					break;
 				default:
 					page = null;

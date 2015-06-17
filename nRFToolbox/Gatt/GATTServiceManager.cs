@@ -27,6 +27,8 @@ namespace nRFToolbox
 			container.RegisterType<IGlucoseMeasurementCharacteristic, GlucoseMeasurementCharacteristic>();
 			container.RegisterType<IGlucoseFeatureCharacteristic, GlucoseFeatureCharacteristic>();
 			container.RegisterType<IRecordAccessControlPointCharacteristic, RecordAccessControlPointCharacteristic>();
+			container.RegisterType<IBloodPressureFeatureCharacterisctic, BloodPressureFeatureCharacterisctic>();
+			container.RegisterType<IBloodPressureMeasurementCharacteristic, BloodPressureMeasurementCharacteristic>();
 
 			container.RegisterType<HeartRateService>(new InjectionConstructor(container.Resolve<HeartRateMeasurementCharacteristic>(), container.Resolve<BodySensorLocationCharacteristics>()));
 			container.RegisterType<BatteryService>(new InjectionConstructor(container.Resolve<BatteryLevelCharacteristics>()));
@@ -35,6 +37,7 @@ namespace nRFToolbox
 			container.RegisterType<DeviceFirmwareUpdateService>(new InjectionConstructor(container.Resolve<DeviceFirmwareUpdatePacketCharacteristics>(), container.Resolve<DeviceFirmwareUpdateControlPointCharacteristics>()));
 			container.RegisterType<UARTService>(new InjectionConstructor(container.Resolve<IRXCharacteristic>(), container.Resolve<ITXCharacteristic>()));
 			container.RegisterType<GlocuseService>(new InjectionConstructor(container.Resolve<IGlucoseMeasurementCharacteristic>(), container.Resolve<IGlucoseFeatureCharacteristic>(), container.Resolve<IRecordAccessControlPointCharacteristic>()));
+			container.RegisterType<BloodPressureService>(new InjectionConstructor(container.Resolve<IBloodPressureMeasurementCharacteristic>(), container.Resolve<IBloodPressureFeatureCharacterisctic>()));
 		}
 
 		public GattServiceManager()
@@ -93,6 +96,11 @@ namespace nRFToolbox
 			return container.Resolve<IGlocuseService>();
 		}
 
+		public IBloodPressureService GetBloodPressureService()
+		{
+			return container.Resolve<IBloodPressureService>();
+		}
+
 		public List<IGattService> GetServiceForGlucoseMonitor() 
 		{
 
@@ -145,6 +153,23 @@ namespace nRFToolbox
 				requiredServices.Add(container.Resolve<BatteryService>());
 				requiredServices.Add(container.Resolve<ImmediateAlertService>());
 				inUsedServices.Add(ToolboxIdentifications.PageId.PROXIMITY, requiredServices);
+				return requiredServices;
+			}
+		}
+
+		public List<IGattService> GetServicesForBloodPressureMonitor() 
+		{
+			List<IGattService> existingService;
+			if(inUsedServices.TryGetValue(ToolboxIdentifications.PageId.BLOOD_PRESSURE, out existingService))
+			{
+				return existingService;
+			}
+			else
+			{
+				var requiredServices = new List<IGattService>();
+				requiredServices.Add(container.Resolve<BloodPressureService>());
+				requiredServices.Add(container.Resolve<BatteryService>());
+				inUsedServices.Add(ToolboxIdentifications.PageId.BLOOD_PRESSURE, requiredServices);
 				return requiredServices;
 			}
 		}

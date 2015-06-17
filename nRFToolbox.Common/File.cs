@@ -116,6 +116,81 @@ namespace Common.Utility
 			return result;
 		}
 
+		public static float ToSFloat(byte[] value)
+		{
+			if (value.Length != 2)
+				throw new ArgumentException();
+			byte b0 = value[0];
+			byte b1 = value[1];
+			///int mantisssa
+			var mantissa = unsignedToSigned(ToInt(b0) + ((ToInt(b1) & 0x0F) << 8), 12);
+			var exponent = unsignedToSigned(ToInt(b1) >> 4, 4);
+			return (float)(mantissa * Math.Pow(10, exponent));
+		}
+
+		private static int ToInt(byte value)
+		{
+			return value & 0xFF;
+		}
+
+		private static int unsignedToSigned(int unsigned, int size)
+		{
+			if ((unsigned & (1 << size - 1)) != 0)
+			{
+				unsigned = -1 * ((1 << size - 1) - (unsigned & ((1 << size - 1) - 1)));
+			}
+			return unsigned;
+		}
+
+		//org.bluetooth.characteristic.date_time
+		public static DateTime? ToDateTime(byte[] baseTime)
+		{
+			if (baseTime == null && baseTime.Length != 7)
+				throw new ArgumentException();
+			int UINT16 = 2;
+			int UINT8 = 1;
+			int year;
+			int month;
+			int day;
+			int hour;
+			int minute;
+			int second;
+			int currentOffset = 0;
+			DateTime? time = null;
+			year = (ushort)((baseTime[currentOffset + 1] << 8) + baseTime[currentOffset]);
+			currentOffset += UINT16;
+			month = (byte)baseTime[currentOffset];
+			currentOffset += UINT8;
+			day = (byte)baseTime[currentOffset];
+			currentOffset += UINT8;
+			hour = (byte)baseTime[currentOffset];
+			currentOffset += UINT8;
+			minute = (byte)baseTime[currentOffset];
+			currentOffset += UINT8;
+			second = (byte)baseTime[currentOffset];
+			if (!IsTimeValid(year, month, day, hour, minute, second))
+				return time;
+			time = new DateTime(year, month, day, hour, minute, second);
+			return time;
+		}
+
+		private static bool IsTimeValid(int year, int month, int day, int hour, int minute, int second)
+		{
+			bool isValid = false;
+			if (year <= 1582 || year >= 9999)
+				return isValid;
+			if (month <= 0  || month > 12)
+				return isValid;
+			if (day <= 0 || day > 31)
+				return isValid;
+			if (hour <= 0 || hour > 24)
+				return isValid;
+			if (minute <= 0 || minute > 59)
+				return isValid; 
+			isValid = true;
+			return isValid;
+		}
+
 		public static async Task<Dictionary<string, string>> UnzipFile(StorageFile zipFile)
 		{
 			if (zipFile == null || zipFile.FileType != ".zip")

@@ -83,6 +83,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Page Include="BloodPressureMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DeviceFirmwareUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NordicUartButtonControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProximityMonitor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +125,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BloodPressureMonitor.xaml.cs">
+      <DependentUpon>BloodPressureMonitor.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controls\ChartControl.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -141,6 +153,9 @@
     <Compile Include="NordicUART.xaml.cs">
       <DependentUpon>NordicUART.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NordicUartButtonControlPanel.xaml.cs">
+      <DependentUpon>NordicUartButtonControlPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProximityMonitor.xaml.cs">
       <DependentUpon>ProximityMonitor.xaml</DependentUpon>
@@ -148,6 +163,8 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BloodPressureMonitorViewModel.cs" />
+    <Compile Include="ViewModels\ControlButtonViewModel.cs" />
     <Compile Include="ViewModels\DeviceFirmwareUpdateStatusEnum.cs" />
     <Compile Include="ViewModels\DeviceFirmwareUpdateViewModel.cs" />
     <Compile Include="ViewModels\DeviceSelectionViewModel.cs" />
@@ -155,11 +172,13 @@
     <Compile Include="ViewModels\GlucoseMonitorViewModel.cs" />
     <Compile Include="ViewModels\HeartRateMonitorViewModel.cs" />
     <Compile Include="ViewModels\HeartRatioLineChart.cs" />
+    <Compile Include="ViewModels\NordicUartControlButtonViewModel.cs" />
     <Compile Include="ViewModels\NordicUARTViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\ProximityViewModel.cs" />
     <Compile Include="ViewModels\SettingPageViewModel.cs" />
     <Compile Include="ViewModels\ToolboxMainPageViewModel.cs" />
+    <Compile Include="ViewModels\UartDialogViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
