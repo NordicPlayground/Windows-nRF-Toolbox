@@ -185,7 +185,7 @@ namespace Common.Utility
 				return isValid;
 			if (hour <= 0 || hour > 24)
 				return isValid;
-			if (minute <= 0 || minute > 59)
+			if (minute < 0 || minute > 59)
 				return isValid; 
 			isValid = true;
 			return isValid;
